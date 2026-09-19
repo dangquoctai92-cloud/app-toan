@@ -1,0 +1,3 @@
+const fs=require('fs');let s=fs.readFileSync('.audit/svg-audit.cjs','utf8');
+s=s.replace('width:1366,height:900','width:Number(process.argv[3]||1366),height:900').replace('p.evaluate(async()=>{const issues','p.evaluate(async(initialSeed)=>{const issues').replace('let seed=813','let seed=initialSeed').replace('return{figures,issues};});','return{figures,issues};},Number(process.argv[2]||813));').replaceAll('.audit/svg-before.json','.audit/svg-after-'+(process.argv[2]||813)+'-'+(process.argv[3]||1366)+'.json').replaceAll('.audit/turtle-before.png','.audit/turtle-after-'+(process.argv[3]||1366)+'.png');
+s=s.replace('server.close();})','server.close();if(result.issues.length)process.exitCode=1;})');fs.writeFileSync('tests/svg-bounds.cjs',s);

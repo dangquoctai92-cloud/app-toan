@@ -1,0 +1,14 @@
+{
+  "passed": 8,
+  "checks": [
+    "Enter submits exactly one question",
+    "expired streak is not shown or awarded",
+    "legacy progress migrates without losing valid values",
+    "lesson groups work with keyboard",
+    "settings focuses input and closes with Escape",
+    "review diagrams retain all four connections in each comparison without duplicate IDs",
+    "recovery notice does not hide quiz bottom",
+    "lesson video identifies its source and practice remains available"
+  ],
+  "errors": []
+}

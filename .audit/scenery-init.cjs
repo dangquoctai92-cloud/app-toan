@@ -1,0 +1,1 @@
+const fs=require('fs');let s=fs.readFileSync('src/app.js','utf8');s=s.replace("const sceneryMedia=window.matchMedia('(prefers-reduced-motion: reduce)');","let sceneryMedia;");s=s.replace("function initParticles(){\n  const art=","function initParticles(){\n  sceneryMedia=window.matchMedia('(prefers-reduced-motion: reduce)');\n  const art=");fs.writeFileSync('src/app.js',s);

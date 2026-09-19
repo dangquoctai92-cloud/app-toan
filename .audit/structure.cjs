@@ -1,0 +1,8 @@
+const fs=require('fs'),vm=require('vm');const html=fs.readFileSync('index.html','utf8');
+const regular=[...html.matchAll(/BANKS\.b([0-9]+)\s*=/g)].map(m=>+m[1]);
+const onDisk=fs.readdirSync('.sgk/banks').filter(x=>/^b[0-9]+\.js$/.test(x));
+const result={lines:html.split('\n').length,bytes:Buffer.byteLength(html),normalSourceFiles:onDisk.length,normalSourceMissing:Array.from({length:81},(_,i)=>'b'+(i+1)+'.js').filter(x=>!onDisk.includes(x)),advancedSourceFiles:fs.readdirSync('.sgk/banks-adv').filter(x=>/^b[0-9]+\.js$/.test(x)).length,cssMarkers:(html.match(/CSS ngân hàng thêm mới/g)||[]).length,advancedCssMarkers:(html.match(/CSS nâng cao/g)||[]).length};
+const inv=JSON.parse(fs.readFileSync('.audit/generator-results.json')).inventory.filter(x=>x.bank==='normal');result.finalEligibleTemplates=inv.reduce((s,x)=>s+Math.min(5,x.count),0);result.finalExcludedTemplates=inv.reduce((s,x)=>s+Math.max(0,x.count-5),0);
+let memory=html;const realFs=fs;const fakeFs={...fs,readFileSync:(p,...args)=>String(p).replaceAll('\\','/').endsWith('/index.html')?memory:realFs.readFileSync(p,...args),writeFileSync:(p,data)=>{if(String(p).replaceAll('\\','/').endsWith('/index.html'))memory=data;else throw Error('unexpected write')}};
+const integrate=fs.readFileSync('.sgk/integrate.js','utf8');const sizes=[];for(let i=0;i<2;i++){vm.runInNewContext(integrate,{require:n=>n==='fs'?fakeFs:require(n),console:{log(){}},process:{exit:c=>{throw Error('exit '+c)}}});sizes.push(Buffer.byteLength(memory));}result.integrationDryRun={original:Buffer.byteLength(html),afterOne:sizes[0],afterTwo:sizes[1],secondRunGrowth:sizes[1]-sizes[0]};
+fs.writeFileSync('.audit/structure-results.json',JSON.stringify(result,null,2));console.log(JSON.stringify(result,null,2));

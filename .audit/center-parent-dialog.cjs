@@ -1,0 +1,2 @@
+const fs=require('fs');let s=fs.readFileSync('src/styles.css','utf8');s=s.replace('#parent-results-dialog{border:0;','#parent-results-dialog{margin:auto;border:0;');fs.writeFileSync('src/styles.css',s);
+s=fs.readFileSync('tests/parent-results.cjs','utf8');s=s.replace('assert.ok(bounds.x>=0&&bounds.x+bounds.width<=width+1);','assert.ok(bounds.x>=0&&bounds.x+bounds.width<=width+1);assert.ok(Math.abs(bounds.x-(width-bounds.width)/2)<2);assert.ok(Math.abs(bounds.y-(850-bounds.height)/2)<2);');fs.writeFileSync('tests/parent-results.cjs',s);

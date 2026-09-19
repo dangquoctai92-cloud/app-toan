@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Đảo phiêu lưu toán học 3D - Khám phá</title>
+    
+    <!-- Google Fonts: Fredoka -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Fredoka', 'sans-serif'],
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        drift: {
+                            '0%': { transform: 'translateX(-20vw)' },
+                            '100%': { transform: 'translateX(120vw)' },
+                        },
+                        bob: {
+                            '0%, 100%': { transform: 'translateY(150px)', opacity: '0' },
+                            '10%, 90%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        bubble: {
+                            '0%': { transform: 'translateY(0) scale(0.5)', opacity: '1' },
+                            '100%': { transform: 'translateY(-120px) scale(1.5)', opacity: '0' },
+                        },
+                        subMove: {
+                            '0%': { transform: 'translateX(120vw)' },
+                            '100%': { transform: 'translateX(-20vw)' },
+                        },
+                        sway: {
+                            '0%, 100%': { transform: 'rotate(-5deg)', transformOrigin: 'bottom center' },
+                            '50%': { transform: 'rotate(5deg)', transformOrigin: 'bottom center' },
+                        },
+                        runDog: {
+                            '0%': { transform: 'translateX(0) scaleX(1)' },
+                            '45%': { transform: 'translateX(-100px) scaleX(1)' },
+                            '50%': { transform: 'translateX(-100px) scaleX(-1)' },
+                            '95%': { transform: 'translateX(0) scaleX(-1)' },
+                            '100%': { transform: 'translateX(0) scaleX(1)' },
+                        },
+                        dolphinJump: {
+                            '0%, 100%': { transform: 'translate(150px, 150px) rotate(-45deg)', opacity: '0' },
+                            '10%': { transform: 'translate(50px, -20px) rotate(-20deg)', opacity: '1' },
+                            '20%': { transform: 'translate(-50px, -80px) rotate(0deg)', opacity: '1' },
+                            '30%': { transform: 'translate(-150px, -20px) rotate(45deg)', opacity: '1' },
+                            '40%': { transform: 'translate(-250px, 150px) rotate(70deg)', opacity: '0' },
+                            '50%, 99%': { transform: 'translate(150px, 150px) rotate(-45deg)', opacity: '0' }
+                        }
+                    },
+                    animation: {
+                        float: 'float 4s ease-in-out infinite',
+                        floatDelayed: 'float 5s ease-in-out infinite 2s',
+                        floatSlow: 'float 8s ease-in-out infinite',
+                        drift1: 'drift 30s linear infinite',
+                        drift2: 'drift 45s linear infinite',
+                        drift3: 'drift 35s linear infinite',
+                        bob1: 'bob 10s ease-in-out infinite',
+                        bob2: 'bob 12s ease-in-out infinite 2s',
+                        bob3: 'bob 15s ease-in-out infinite 5s',
+                        bubble: 'bubble 1.5s ease-out forwards',
+                        subMove: 'subMove 40s linear infinite',
+                        sway: 'sway 3s ease-in-out infinite',
+                        runDog: 'runDog 8s linear infinite',
+                        dolphinJump: 'dolphinJump 8s linear infinite'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Fredoka', sans-serif;
+            user-select: none;
+            overflow: hidden; 
+        }
+        
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Cố định layout dọc của khung câu hỏi bằng flex */
+        .quiz-box-base {
+            background-color: white;
+            width: 100%;
+            border-radius: 3rem;
+            box-shadow: 0 15px 0 #94a3b8;
+            border-width: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            transition-property: background-color, border-color, color, fill, stroke;
+            transition-duration: 300ms;
+            overflow: visible;
+            padding-bottom: 2rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+    </style>
+</head>
+<body class="w-screen h-screen relative text-gray-800 bg-gradient-to-b from-blue-300 via-cyan-200 to-blue-500">
+
+    <!-- ==================== GLOBAL AMBIENT BACKGROUND ==================== -->
+    <div id="global-background" class="fixed inset-0 z-0 overflow-hidden select-none pointer-events-none">
+        <!-- Sky & Clouds -->
+        <div class="fixed top-[12%] left-0 w-full animate-drift1 pointer-events-none">
+            <div class="inline-block text-[6rem] drop-shadow-2xl animate-float opacity-80 cursor-pointer interactive-cloud transition-all duration-300 pointer-events-auto">☁️</div>
+        </div>
+        <div class="fixed top-[25%] left-0 w-full animate-drift2 pointer-events-none">
+            <div class="inline-block text-6xl drop-shadow-2xl animate-floatDelayed opacity-70 cursor-pointer interactive-cloud transition-all duration-300 pointer-events-auto">☁️</div>
+        </div>
+        <div class="fixed top-[60%] left-0 w-full animate-drift3 pointer-events-none">
+            <div class="inline-block text-[7rem] drop-shadow-2xl animate-float opacity-60 cursor-pointer interactive-cloud transition-all duration-300 pointer-events-auto">☁️</div>
+        </div>
+        
+        <div class="fixed top-[5%] right-[20%] pointer-events-none">
+            <div class="inline-block text-[7rem] animate-floatSlow cursor-pointer interactive-cloud transition-transform pointer-events-auto hover:scale-110 drop-shadow-xl">🎈</div>
+        </div>
+
+        <!-- Birds -->
+        <div class="fixed top-[10%] left-[10%] text-5xl animate-float">🐦</div>
+        <div class="fixed top-[15%] left-[20%] text-4xl animate-floatDelayed">🐦</div>
+
+        <!-- Ocean Elements -->
+        <div class="fixed top-[48%] left-0 w-full animate-subMove pointer-events-none drop-shadow-2xl opacity-90">
+            <div class="relative w-[180px] h-[70px] pointer-events-auto cursor-pointer inline-block interactive-ocean">
+                <div class="absolute -top-[25px] left-[40px] w-[12px] h-[30px] bg-yellow-400 border-2 border-yellow-600 rounded-t-sm z-0"></div>
+                <div class="absolute -top-[25px] left-[20px] w-[30px] h-[12px] bg-yellow-400 border-2 border-yellow-600 rounded-sm z-0"></div>
+                <div class="absolute inset-0 bg-gradient-to-b from-yellow-300 to-yellow-500 border-[6px] border-yellow-600 rounded-full flex items-center justify-center gap-4 shadow-[inset_0_-8px_0_rgba(0,0,0,0.1)] z-10">
+                    <div class="w-[24px] h-[24px] bg-cyan-300 border-[4px] border-gray-600 rounded-full shadow-inner"></div>
+                    <div class="w-[24px] h-[24px] bg-cyan-300 border-[4px] border-gray-600 rounded-full shadow-inner"></div>
+                    <div class="w-[24px] h-[24px] bg-cyan-300 border-[4px] border-gray-600 rounded-full shadow-inner"></div>
+                </div>
+                <div class="absolute top-[20px] -right-[15px] w-[25px] h-[30px] bg-yellow-600 rounded-r-full border-2 border-yellow-700 flex items-center justify-center z-0">
+                    <div class="w-[4px] h-[40px] bg-gray-700 animate-spin absolute right-[-5px]"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="fixed top-[45%] left-[45%] pointer-events-none">
+            <div class="inline-block text-[6rem] animate-dolphinJump cursor-pointer interactive-ocean transition-transform pointer-events-auto drop-shadow-2xl">🐬</div>
+        </div>
+        
+        <div class="fixed bottom-[10%] right-[10%] pointer-events-none">
+            <div class="inline-block text-[6rem] animate-bob1 cursor-pointer interactive-ocean transition-transform pointer-events-auto hover:scale-110 drop-shadow-2xl">🐋</div>
+        </div>
+        <div class="fixed top-[20%] left-[8%] pointer-events-none">
+            <div class="inline-block text-[5rem] animate-bob2 cursor-pointer interactive-ocean transition-transform pointer-events-auto hover:scale-110 drop-shadow-xl">🐙</div>
+        </div>
+        <div class="fixed bottom-[20%] left-[12%] pointer-events-none">
+            <div class="inline-block text-[7rem] animate-bob3 cursor-pointer interactive-ocean transition-transform pointer-events-auto hover:scale-110 drop-shadow-2xl">⛵</div>
+        </div>
+
+        <!-- Edge Trees -->
+        <div class="absolute -bottom-10 -left-10 text-[10rem] animate-sway">🌴</div>
+        <div class="absolute -bottom-10 -right-10 text-[10rem] animate-sway" style="animation-delay: 1s;">🌳</div>
+    </div>
+    
+    <!-- ==================== STICKY HEADER ==================== -->
+    <div class="fixed top-0 w-full z-50 bg-white/40 backdrop-blur-md border-b-4 border-white/50 px-4 py-3 flex justify-between items-center shadow-sm">
+        <div class="flex items-center gap-3 bg-white/70 p-1.5 pr-5 rounded-full shadow-[inset_0_3px_5px_rgba(0,0,0,0.1)] border-2 border-white">
+            <div class="w-12 h-12 bg-orange-200 rounded-full flex items-center justify-center text-3xl border-2 border-orange-400 shadow-sm">👧</div>
+            <span class="font-bold text-blue-900 text-xl tracking-wide drop-shadow-sm">Bé Bông</span>
+        </div>
+        
+        <div class="hidden md:flex flex-1 max-w-md mx-8 bg-black/10 h-8 rounded-full border-2 border-white/60 p-1 relative shadow-inner">
+            <div class="bg-gradient-to-r from-green-400 to-green-500 w-[40%] h-full rounded-full shadow-[inset_0_-3px_5px_rgba(0,0,0,0.2)]"></div>
+            <div class="absolute -top-4 left-[40%] -ml-4 text-4xl drop-shadow-md z-10 animate-bounce">👑</div>
+        </div>
+        
+        <div class="flex items-center gap-4">
+            <div class="bg-gradient-to-b from-yellow-300 to-yellow-500 px-6 py-2.5 rounded-full border-4 border-yellow-200 shadow-[0_6px_0_#b45309] text-white font-black text-2xl flex items-center gap-2 transform transition-transform hover:scale-105 cursor-pointer">
+                <span class="animate-pulse">⭐️</span> <span id="header-stars" class="drop-shadow-md">120</span>
+            </div>
+            <button id="settings-btn" onclick="openSettings()" class="flex items-center justify-center gap-1 text-center font-bold text-sm px-4 py-2 bg-white text-slate-700 rounded-full shadow-[0_4px_0_#cbd5e1] hover:scale-105 active:translate-y-[2px] active:shadow-[0_2px_0_#cbd5e1] transition-all cursor-pointer border-2 border-slate-200">
+                Cài đặt ⚙️
+            </button>
+        </div>
+    </div>
+
+    <!-- ==================== SCREEN 1: MAP (GRID 2x2) ==================== -->
+    <div id="map-screen" class="relative z-10 w-full h-full flex flex-col transition-opacity duration-500">
+        <!-- ĐỒNG HỒ TỐC ĐỘ -->
+        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur rounded-2xl p-3 shadow-lg border-2 border-indigo-200 flex items-center space-x-3 z-40">
+            <div class="relative w-12 h-12">
+                <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                    <path class="text-slate-200" stroke-width="4" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    <path class="text-indigo-500" stroke-dasharray="90, 100" stroke-width="4" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center font-black text-slate-700 text-sm">90%</div>
+            </div>
+            <div>
+                <div class="text-[10px] font-bold text-slate-500 uppercase">Tốc độ cày ải</div>
+                <div class="text-sm font-black text-indigo-600">Sắp phá đảo! 🏆</div>
+            </div>
+        </div>
+        
+        <div class="hide-scrollbar flex-1 relative w-full h-full pt-20 pb-32 overflow-y-auto">
+            
+            <!-- Main Title -->
+            <div class="text-center z-10 my-6 relative">
+                <h1 class="text-4xl md:text-[3.5rem] leading-tight font-black text-white drop-shadow-[0_6px_6px_rgba(0,0,0,0.3)] stroke-blue-900" style="-webkit-text-stroke: 2px #1e3a8a;">
+                    MÔN TOÁN 3 - BỘ SÁCH KẾT NỐI
+                </h1>
+            </div>
+
+            <!-- Islands Grid Container -->
+            <div id="map-screen-content" class="relative z-10 w-full mb-8">
+                <!-- Islands injected by JS -->
+            </div>
+            
+            <!-- KHU VỰC KỲ THI TRẠNG NGUYÊN (HARDCODED SKELETON) -->
+            <div id="final-boss-container" class="flex flex-col items-center justify-center text-center mt-8 mb-16 w-full relative z-[60] shrink-0">
+                <!-- Cụm Icon Lâu đài và Ổ khóa luôn luôn hiển thị mặc định khi tải trang -->
+                <div class="relative mb-3 flex items-center justify-center w-24 h-24">
+                    <!-- Lâu đài mặc định bị ẩn mờ màu xám -->
+                    <img id="final-castle" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f3f0.svg" alt="Castle" class="w-24 h-24 opacity-30 grayscale transition-all duration-500 select-none drop-shadow-md hover:scale-105 inline-block object-contain" />
+                    <!-- Ổ khóa đỏ đè lên chính giữa lâu đài -->
+                    <img id="final-lock" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f512.svg" alt="Lock" class="absolute w-12 h-12 select-none animate-pulse drop-shadow-md z-10" />
+                </div>
+                <!-- Nút bấm trạng thái đang khóa -->
+                <button id="final-exam-btn" class="px-8 py-3.5 bg-slate-300 text-slate-500 font-bold rounded-2xl shadow-[0_6px_0_#94a3b8] cursor-not-allowed text-lg transition-all duration-300">
+                    Kỳ Thi Trạng Nguyên (Đang khóa)
+                </button>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- ==================== SCREEN 2: VIDEO ==================== -->
+    <div id="video-screen" class="relative z-10 w-full h-full hidden bg-sky-200/50 backdrop-blur-sm pt-24 flex-col transition-opacity duration-500">
+        <!-- Ambient Pets -->
+        <div class="hidden lg:block absolute left-[5%] bottom-[20%] text-[8rem] animate-bounce" style="animation-duration: 5s;">🐕</div>
+        <div class="hidden lg:block absolute right-[5%] bottom-[20%] text-[8rem] animate-sway">🐈</div>
+        
+        <div class="flex-1 flex flex-col items-center justify-start md:justify-center p-6 gap-4 md:gap-6 overflow-y-auto w-full h-full pb-10 relative z-20">
+            
+            <!-- Sub-header Flexbox -->
+            <div class="flex items-center gap-4 w-full max-w-4xl mb-6 shrink-0 overflow-hidden">
+                <button onclick="showScreen('map-screen')" class="flex-shrink-0 px-5 py-2.5 rounded-full bg-white flex items-center justify-center text-center text-sm font-bold text-slate-700 border-4 border-gray-200 shadow-[0_6px_0_#9ca3af] active:translate-y-[6px] active:shadow-[0_2px_0_#9ca3af] transition-all z-20 hover:bg-gray-50">
+                    Quay lại
+                </button>
+                <h2 id="video-title" class="flex-1 text-xl md:text-2xl font-bold text-slate-700 whitespace-nowrap overflow-hidden text-ellipsis drop-shadow-sm">
+                    📺 Bài 1: Luyện tập Cộng, trừ có nhớ trong phạm vi 1000
+                </h2>
+            </div>
+            
+            <div class="w-full max-w-4xl shrink-0 aspect-video bg-white rounded-[2.5rem] p-4 shadow-[0_15px_30px_rgba(0,0,0,0.3)] border-[10px] border-[#fbbf24] relative animate__animated animate__zoomIn flex flex-col justify-center">
+                <div class="absolute -top-8 -left-8 text-6xl animate-bounce" style="animation-delay: 0.5s;">⭐</div>
+                <div class="absolute -bottom-8 -right-8 text-6xl animate-bounce" style="animation-delay: 1s;">🎈</div>
+                
+                <video id="mathVideo" controls class="w-full h-full object-cover rounded-2xl border-4 border-amber-400 shadow-[0_8px_0_#b45309] bg-slate-800 relative z-10">
+                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                    Trình duyệt không hỗ trợ phát video.
+                </video>
+            </div>
+            
+            <div class="mt-4 shrink-0">
+                <button onclick="startQuiz()" class="px-10 py-5 md:px-12 md:py-6 bg-gradient-to-b from-orange-400 to-red-500 rounded-full text-white text-2xl md:text-3xl font-black shadow-[0_10px_0_#991b1b,0_15px_20px_rgba(0,0,0,0.2)] active:translate-y-[8px] active:shadow-[0_2px_0_#991b1b] transition-all animate__animated animate__pulse animate__infinite border-4 border-orange-300">
+                    Cháu đã hiểu bài, qua Thách Thức ngay! 🚀
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== SCREEN 3: QUIZ ==================== -->
+    <div id="quiz-screen" class="relative z-10 w-full h-full hidden bg-orange-100/50 backdrop-blur-sm pt-24 flex-col transition-opacity duration-500">
+
+        <!-- Ambient Pets -->
+        <div class="hidden lg:block absolute left-[5%] bottom-[20%] text-[8rem] animate-bounce" style="animation-duration: 5s;">🐇</div>
+        <div class="hidden lg:block absolute right-[5%] bottom-[20%] text-[8rem] animate-sway">🐿️</div>
+        <div class="flex items-center gap-4 w-full max-w-7xl mx-auto px-6 mb-6 shrink-0">
+            <button onclick="resetAndGoMap()" class="flex-shrink-0 flex items-center gap-2 px-4 py-2 md:px-6 md:py-3 bg-white rounded-full text-lg md:text-xl font-bold border-4 border-gray-200 shadow-[0_6px_0_#9ca3af] active:translate-y-[6px] active:shadow-[0_2px_0_#9ca3af] transition-all z-20 text-gray-700 hover:bg-gray-50">
+                <span>🔙</span> <span class="hidden md:inline whitespace-nowrap">Quay lại bản đồ</span>
+            </button>
+            
+            <div class="flex-1 max-w-2xl mx-4 lg:mx-8 bg-white h-10 md:h-12 rounded-full border-4 border-orange-300 shadow-[0_6px_0_#fdba74] relative p-1 overflow-visible">
+                <div id="progress-bar" class="h-full bg-gradient-to-r from-green-400 to-emerald-500 rounded-full transition-all duration-700 ease-bounce relative" style="width: 10%;">
+                    <div id="kitty-icon" class="absolute top-1/2 -translate-y-1/2 -right-6 md:-right-8 text-5xl md:text-6xl transition-all duration-700 ease-bounce drop-shadow-xl z-20">🐈</div>
+                </div>
+                <div class="absolute top-1/2 -translate-y-1/2 right-0 -mr-6 text-5xl md:text-6xl drop-shadow-xl z-10 animate__animated animate__pulse animate__infinite">🎁</div>
+            </div>
+        </div>
+        
+        <!-- HIỂN THỊ TÊN CHỦ ĐỀ Ở MÀN HÌNH LÀM TOÁN -->
+        <h2 id="quiz-topic-title" class="text-xl md:text-2xl font-black text-slate-700 mt-2 mb-4 text-center drop-shadow-sm px-4"></h2>
+
+        <div class="flex-1 flex flex-col lg:flex-row gap-8 lg:gap-16 px-4 md:px-6 max-w-7xl w-full mx-auto justify-center items-center lg:items-stretch overflow-y-auto pb-8">
+            
+            <div class="flex-1 w-full max-w-2xl flex flex-col justify-center relative my-4">
+                <!-- Flex-col dọc cho toàn bộ phần tử trong Khung làm toán -->
+                <div id="question-box" class="quiz-box-base border-sky-300">
+                    
+                    <!-- Nhãn câu hỏi trồi nhẹ lên trên bằng margin âm, KHÔNG dùng absolute tránh đè -->
+                    <div class="bg-gradient-to-b from-yellow-300 to-yellow-400 text-orange-900 px-6 md:px-10 py-2 md:py-3 rounded-full font-black text-xl md:text-2xl shadow-[0_6px_0_#b45309] border-4 border-white whitespace-nowrap z-20 -mt-8 md:-mt-10 shrink-0">
+                        Câu <span id="q-index">1</span>/10
+                    </div>
+                    
+                    <div class="flex flex-col items-center justify-center w-full flex-1 gap-6 md:gap-8 mt-6">
+                        <!-- Ép buộc phép tính nằm 1 dòng với whitespace-nowrap -->
+                        <div id="question-text" class="text-3xl md:text-4xl lg:text-5xl font-black text-slate-700 tracking-wider drop-shadow-md whitespace-nowrap text-center block w-full px-2">
+                            ...
+                        </div>
+                        
+                        <div class="bg-gray-100 rounded-[2rem] w-48 md:w-64 h-20 md:h-24 flex items-center justify-center text-4xl md:text-6xl font-black text-blue-600 border-4 border-dashed border-gray-300 shadow-inner shrink-0">
+                            <span id="answer-display"></span>
+                            <span class="animate-pulse ml-2 text-gray-400 font-normal">_</span>
+                        </div>
+                        
+                        <div id="review-nav" class="hidden w-full flex justify-between gap-4 mt-2 px-4 max-w-sm">
+                            <button onclick="prevReviewQuestion()" class="flex-1 flex items-center justify-center text-center font-bold px-6 py-3 rounded-2xl bg-slate-200 text-slate-700 active:bg-slate-300 border-2 border-slate-300">⬅️ Câu trước</button>
+                            <button onclick="nextReviewQuestion()" class="flex-1 flex items-center justify-center text-center font-bold px-6 py-3 rounded-2xl bg-slate-200 text-slate-700 active:bg-slate-300 border-2 border-slate-300">Câu sau</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bàn phím số -->
+            <div class="w-full lg:w-auto flex justify-center items-center shrink-0 mb-8 lg:mb-0">
+                <div id="keypad" class="grid grid-cols-3 gap-3 md:gap-5 pb-6">
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- ==================== STAGE 2: RPG GAME ==================== -->
+
+
+    <!-- ==================== SCREEN 4: SUMMARY ==================== -->
+    <div id="summary-screen" class="relative z-10 w-full h-full hidden bg-cyan-100/50 backdrop-blur-sm pt-20 flex-col transition-opacity duration-500">
+        <div class="flex-1 flex flex-col items-center justify-start p-4 md:p-8 overflow-y-auto w-full h-full pb-10">
+            
+            <h1 class="text-3xl md:text-5xl font-black text-center text-white drop-shadow-[0_4px_4px_rgba(0,0,0,0.3)] stroke-blue-900 mb-2 mt-4" style="-webkit-text-stroke: 1.5px #1e3a8a;">
+                🎉 Chúc Mừng Bé Bông Đã Hoàn Thành! 🎉
+            </h1>
+            
+            <div id="summary-score" class="text-xl md:text-3xl font-black text-orange-600 mb-6 drop-shadow-sm bg-white/60 px-6 py-2 rounded-full border-4 border-white">
+                Kết quả của con: 8 / 10 câu đúng! ⭐️
+            </div>
+
+            <div class="w-full max-w-4xl bg-white rounded-[2rem] shadow-[0_15px_0_#94a3b8] border-8 border-sky-300 p-4 md:p-6 mb-8 overflow-hidden flex flex-col">
+                <!-- Table Header -->
+                <div class="hidden md:grid grid-cols-4 gap-4 bg-sky-100 p-4 rounded-xl font-bold text-sky-800 text-lg mb-4 text-center">
+                    <div>Câu số</div>
+                    <div>Phép tính</div>
+                    <div>Đáp án của con</div>
+                    <div>Trạng thái</div>
+                </div>
+                
+                <!-- Table Body Cuộn -->
+                <div id="summary-table-body" class="flex-1 max-h-[40vh] md:max-h-[50vh] overflow-y-auto pr-2 space-y-3">
+                    <!-- JS Injected rows -->
+                </div>
+            </div>
+
+
+            <div class="flex flex-col md:flex-row gap-4 mb-8 w-full max-w-4xl justify-center shrink-0">
+                <button onclick="retryQuiz()" class="flex-1 px-6 py-4 md:px-8 md:py-6 bg-gradient-to-b from-amber-400 to-amber-600 rounded-full text-white text-xl md:text-2xl font-black shadow-[0_10px_0_#b45309,0_15px_20px_rgba(0,0,0,0.2)] active:translate-y-[8px] active:shadow-[0_2px_0_#b45309] transition-all animate__animated animate__pulse animate__infinite border-4 border-amber-300">
+                    Quay lại sửa bài ✏️
+                </button>
+                <button onclick="resetAndGoMap()" class="flex-1 px-6 py-4 md:px-8 md:py-6 bg-gradient-to-b from-green-400 to-green-600 rounded-full text-white text-xl md:text-2xl font-black shadow-[0_10px_0_#14532d,0_15px_20px_rgba(0,0,0,0.2)] active:translate-y-[8px] active:shadow-[0_2px_0_#14532d] transition-all border-4 border-green-300">
+                    Quay lại Bản đồ 🗺️
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== VICTORY OVERLAY ==================== -->
+    <div id="victory-overlay" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm transition-all duration-300 hidden">
+        <div id="victory-box" class="relative w-full max-w-md mx-4 bg-gradient-to-b from-amber-50 via-white to-orange-50 rounded-[2.5rem] p-10 shadow-2xl border-[6px] border-yellow-400 flex flex-col items-center justify-center text-center space-y-6 overflow-visible">
+            
+            <button id="close-victory-btn" onclick="document.getElementById('victory-overlay').classList.add('hidden')" class="absolute -top-5 -right-5 flex items-center justify-center w-12 h-12 bg-gradient-to-b from-rose-400 to-red-500 text-white font-black rounded-full border-4 border-white shadow-[0_5px_0_#991b1b] active:translate-y-1 active:shadow-none cursor-pointer text-xl z-50">✕</button>
+
+            <!-- KHU VỰC CÚP VÀNG VÀ HÀO QUANG -->
+            <div class="relative flex items-center justify-center w-full min-h-[140px] pt-2 overflow-visible">
+                <div class="absolute w-40 h-40 bg-yellow-400/30 rounded-full blur-2xl animate-pulse"></div>
+                <!-- Cúp vàng -->
+                <span class="relative z-10 text-[100px] leading-none filter drop-shadow-lg animate-bounce inline-block">🏆</span>
+                <!-- Sao lấp lánh -->
+                <span class="absolute top-0 left-16 text-4xl animate-pulse text-yellow-400">⭐</span>
+                <span class="absolute bottom-2 right-16 text-4xl animate-pulse text-amber-400 delay-200">✨</span>
+            </div>
+
+            <div class="w-full overflow-visible px-2">
+                <h2 class="text-3xl sm:text-4xl font-black text-orange-600 tracking-wide text-center leading-tight drop-shadow-sm whitespace-nowrap">
+                    XUẤT SẮC QUÁ BÔNG ƠI!
+                </h2>
+            </div>
+
+            <p class="text-xl font-black text-slate-700 leading-relaxed max-w-sm">
+                Con đã chinh phục điểm số tuyệt đối!<br>
+                <span class="text-rose-500 tracking-wide">Bố tự hào về con! ❤️</span>
+            </p>
+        </div>
+    </div>
+    </div>
+    
+    <!-- ==================== SETTINGS MODAL ==================== -->
+    <div id="settings-modal" class="hidden fixed inset-0 z-[60] items-center justify-center bg-black/50 backdrop-blur-sm">
+        <div class="bg-white rounded-[2rem] border-8 border-blue-400 p-6 md:p-8 w-[90%] max-w-md shadow-2xl relative transform transition-all">
+            <h2 class="text-xl md:text-2xl font-black text-center text-blue-900 mb-6 drop-shadow-sm">⚙️ CÀI ĐẶT HỆ THỐNG PHỤ HUYNH</h2>
+            
+            <div class="mb-4 text-left">
+                <label class="block text-slate-700 font-bold mb-2 text-lg">Mật khẩu mới:</label>
+                <input type="password" id="input-parental-pass" placeholder="Mặc định là 452012" class="w-full px-4 py-3 rounded-xl border-4 border-slate-200 focus:border-blue-400 focus:outline-none text-lg font-bold text-slate-700">
+            </div>
+            
+            <div class="mt-4 border-t border-slate-200 pt-4 mb-6 text-left">
+                <label class="block text-sm font-bold text-slate-700 mb-2">Cấu hình AI (Dành cho Phụ huynh)</label>
+                <input type="password" id="gemini-api-key" placeholder="Nhập Gemini API Key vào đây..." class="w-full px-4 py-2 border-2 border-indigo-200 rounded-xl text-sm focus:outline-none focus:border-indigo-500 mb-2">
+                <p class="text-[10px] text-slate-500">*Lưu khóa này để kích hoạt tính năng Gia Sư Thông Minh</p>
+            </div>
+            
+            <div class="flex gap-4 w-full">
+                <button onclick="closeSettings()" class="flex-1 px-4 py-3 bg-slate-300 rounded-xl text-slate-700 text-lg font-bold shadow-[0_4px_0_#94a3b8] active:translate-y-[4px] active:shadow-[0_0px_0_#94a3b8] transition-all">
+                    Hủy
+                </button>
+                <button onclick="saveSettings()" class="flex-1 px-4 py-3 bg-gradient-to-b from-green-400 to-green-500 rounded-xl text-white text-lg font-black shadow-[0_4px_0_#166534] border-2 border-green-300 active:translate-y-[4px] active:shadow-[0_0px_0_#166534] transition-all">
+                    Lưu Cấu Hình
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script>
+        // --- Data Structure ---
+        const LESSON_MAP = [
+            {
+                id: 'island-1',
+                title: '🌴 ĐẢO 1: CÀY TOÁN HÈ',
+                theme: { bg: 'bg-yellow-100', border: 'border-yellow-400', text: 'text-yellow-800', path: '#fcd34d', pathShadow: '#fbbf24' },
+                decorations: [
+                    { type: 'tree', emoji: '🌴', style: 'top: 5%; right: 10%; font-size: 3.5rem;' },
+                    { type: 'tree', emoji: '🌴', style: 'bottom: 10%; left: 5%; font-size: 4rem;' },
+                    { type: 'dog', emoji: '🐕', style: 'bottom: 5%; right: 20%; font-size: 3.5rem;' }
+                ],
+                lessons: [
+                    { id: 1, code: 'b1', name: 'Cộng trừ có nhớ trong phạm vi 1000' },
+                    { id: 2, code: 'b2', name: 'Bảng nhân 2 và Bảng chia 2' },
+                    { id: 3, code: 'b3', name: 'Bảng nhân 3 và Bảng chia 3' },
+                    { id: 4, code: 'b4', name: 'Bảng nhân 4 và Bảng chia 4' },
+                    { id: 5, code: 'b5', name: 'Bảng nhân 5 và Bảng chia 5' },
+                    { id: 6, code: 'b6', name: 'Bảng nhân 7 và Bảng chia 7' },
+                    { id: 7, code: 'b7', name: 'Bảng nhân 8 và Bảng chia 8' },
+                    { id: 8, code: 'b8', name: 'Bảng nhân 9 và Bảng chia 9' },
+                    { id: 9, code: 'b9', name: 'Toán tìm ẩn số (Tìm x)' },
+                ]
+            },
+            {
+                id: 'island-2',
+                title: '🏫 ĐẢO 2: HỌC KỲ 1',
+                theme: { bg: 'bg-green-100', border: 'border-green-400', text: 'text-green-800', path: '#86efac', pathShadow: '#4ade80' },
+                decorations: [
+                    { type: 'tree', emoji: '🌳', style: 'top: 15%; left: 5%; font-size: 4rem;' },
+                    { type: 'cat', emoji: '🐈', style: 'bottom: 10%; right: 15%; font-size: 3.5rem;' }
+                ],
+                lessons: [
+                    { id: 11, code: 'b11', name: 'Nhân số có 2 chữ số với số có 1 chữ số' },
+                    { id: 12, code: 'b12', name: 'Chia số có 2 chữ số cho số có 1 chữ số' },
+                    { id: 13, code: 'b13', name: 'Nhân số có 3 chữ số với số có 1 chữ số' },
+                    { id: 14, code: 'b14', name: 'Chia số có 3 chữ số cho số có 1 chữ số' },
+                    { id: 15, code: 'b15', name: 'Tính giá trị biểu thức (không ngoặc)' },
+                    { id: 16, code: 'b16', name: 'Tính giá trị biểu thức (có dấu ngoặc)' },
+                    { id: 17, code: 'b17', name: 'Ôn tập phép tính tổng hợp' }
+                ]
+            },
+            {
+                id: 'island-3',
+                title: '🌸 ĐẢO 3: HỌC KỲ 2',
+                theme: { bg: 'bg-pink-100', border: 'border-pink-400', text: 'text-pink-800', path: '#f9a8d4', pathShadow: '#f472b6' },
+                decorations: [
+                    { type: 'tree', emoji: '🌸', style: 'bottom: 15%; left: 10%; font-size: 3.5rem;' },
+                    { type: 'tree', emoji: '🌸', style: 'top: 15%; right: 15%; font-size: 3.5rem;' }
+                ],
+                lessons: [
+                    { id: 19, code: 'b19', name: 'Cộng, trừ trong phạm vi 10.000' },
+                    { id: 20, code: 'b20', name: 'Nhân số có 4 chữ số với số có 1 chữ số' },
+                    { id: 21, code: 'b21', name: 'Chia số có 4 chữ số cho số có 1 chữ số' },
+                    { id: 22, code: 'b22', name: 'Cộng, trừ trong phạm vi 100.000' },
+                    { id: 23, code: 'b23', name: 'Nhân số có 5 chữ số với số có 1 chữ số' },
+                    { id: 24, code: 'b24', name: 'Chia số có 5 chữ số cho số có 1 chữ số' },
+                    { id: 25, code: 'b25', name: 'Làm quen với chữ số La Mã' },
+                    { id: 26, code: 'b26', name: 'Ôn tập cuối Học kỳ 2' }
+                ]
+            },
+            {
+                id: 'island-4',
+                title: '💎 ĐẢO 4: KHO BÁU AI',
+                theme: { bg: 'bg-purple-100', border: 'border-purple-400', text: 'text-purple-800', path: '#d8b4fe', pathShadow: '#c084fc' },
+                decorations: [
+                    { type: 'tree', emoji: '🍄', style: 'top: 15%; left: 15%; font-size: 3.5rem;' },
+                    { type: 'tree', emoji: '🍄', style: 'bottom: 10%; right: 10%; font-size: 4rem;' }
+                ],
+                lessons: [
+                    { id: 28, code: 'b28', name: 'Thử thách AI: Tìm X (Cộng, Trừ)' },
+                    { id: 29, code: 'b29', name: 'Thử thách AI: Tìm X (Nhân, Chia)' },
+                    { id: 30, code: 'b30', name: 'Thử thách AI: Tính nhẩm số tròn nghìn' },
+                    { id: 31, code: 'b31', name: 'Thử thách AI: Biểu thức 3 phép tính' },
+                    { id: 32, code: 'b32', name: 'Thử thách AI: Rèn luyện ngoặc kép' },
+                    { id: 33, code: 'b33', name: 'Thử thách AI: Phép chia có dư' },
+                    { id: 34, code: 'b34', name: 'Thử thách AI: Dãy tính liên hoàn' }
+                ]
+            }
+        ];
+
+        const MAP_LAYOUTS = {
+            10: { nodes: [{ x: 10, y: 20 }, { x: 35, y: 15 }, { x: 60, y: 20 }, { x: 85, y: 30 }, { x: 80, y: 55 }, { x: 55, y: 55 }, { x: 30, y: 50 }, { x: 10, y: 75 }, { x: 35, y: 85 }, { x: 75, y: 80 }], path: 'M 10 20 Q 20 10 35 15 Q 50 20 60 20 Q 80 25 85 30 Q 95 45 80 55 Q 65 60 55 55 Q 45 50 30 50 Q 15 50 10 75 Q 5 90 35 85 Q 55 80 75 80' },
+            9: { nodes: [{ x: 15, y: 20 }, { x: 40, y: 15 }, { x: 65, y: 20 }, { x: 85, y: 45 }, { x: 60, y: 55 }, { x: 35, y: 50 }, { x: 15, y: 75 }, { x: 40, y: 85 }, { x: 80, y: 80 }], path: 'M 15 20 Q 25 10 40 15 Q 55 20 65 20 Q 90 25 85 45 Q 80 60 60 55 Q 45 50 35 50 Q 20 50 15 75 Q 10 90 40 85 Q 60 80 80 80' },
+            8: { nodes: [{ x: 15, y: 20 }, { x: 45, y: 15 }, { x: 75, y: 25 }, { x: 85, y: 50 }, { x: 55, y: 55 }, { x: 25, y: 50 }, { x: 15, y: 80 }, { x: 60, y: 85 }], path: 'M 15 20 Q 30 10 45 15 Q 60 20 75 25 Q 95 35 85 50 Q 75 60 55 55 Q 40 50 25 50 Q 5 50 15 80 Q 35 90 60 85' },
+            6: { nodes: [{ x: 15, y: 35 }, { x: 40, y: 20 }, { x: 70, y: 30 }, { x: 85, y: 55 }, { x: 60, y: 80 }, { x: 15, y: 80 }], path: 'M 15 35 Q 30 15 40 20 Q 60 30 70 30 Q 90 40 85 55 Q 80 80 60 80 Q 35 80 15 80' },
+            4: { nodes: [{ x: 20, y: 40 }, { x: 50, y: 25 }, { x: 80, y: 45 }, { x: 60, y: 75 }], path: 'M 20 40 Q 35 15 50 25 Q 75 35 80 45 Q 85 65 60 75' },
+            3: { nodes: [{ x: 25, y: 65 }, { x: 50, y: 45 }, { x: 75, y: 60 }], path: 'M 25 65 Q 35 40 50 45 Q 65 50 75 60' }
+        };
+
+        const lessonTitles = {
+            'b1': 'Phép cộng, trừ có nhớ phạm vi 1000',
+            'b2': 'Bảng nhân 2, Bảng chia 2',
+            'b3': 'Bảng nhân 3, Bảng chia 3',
+            'b4': 'Bảng nhân 4, Bảng chia 4',
+            'b5': 'Bảng nhân 5, Bảng chia 5',
+            'b6': 'Bảng nhân 6, Bảng chia 6',
+            'b7': 'Bảng nhân 7, Bảng chia 7',
+            'b8': 'Bảng nhân 8, Bảng chia 8',
+            'b9': 'Bảng nhân 9, Bảng chia 9',
+            'b10': 'Tổng hợp Đảo 1: Thử thách cuối cùng',
+            'b11': 'Nhân số có 2 chữ số với số có 1 chữ số',
+            'b12': 'Chia số có 2 chữ số cho số có 1 chữ số',
+            'b13': 'Nhân số có 3 chữ số với số có 1 chữ số',
+            'b14': 'Chia số có 3 chữ số cho số có 1 chữ số',
+            'b15': 'Tính giá trị biểu thức (không ngoặc)',
+            'b16': 'Tính giá trị biểu thức (có dấu ngoặc)',
+            'b17': 'Ôn tập phép tính tổng hợp',
+            'b18': 'Tổng hợp Đảo 2: Thử thách giữa kỳ',
+            'b19': 'Cộng, trừ trong phạm vi 10.000',
+            'b20': 'Nhân số có 4 chữ số với số có 1 chữ số',
+            'b21': 'Chia số có 4 chữ số cho số có 1 chữ số',
+            'b22': 'Cộng, trừ trong phạm vi 100.000',
+            'b23': 'Nhân số có 5 chữ số với số có 1 chữ số',
+            'b24': 'Chia số có 5 chữ số cho số có 1 chữ số',
+            'b25': 'Làm quen với chữ số La Mã',
+            'b26': 'Ôn tập cuối Học kỳ 2',
+            'b27': 'Tổng hợp Đảo 3: Vượt vũ môn',
+            'b28': 'Thử thách AI: Tìm X (Cộng, Trừ)',
+            'b29': 'Thử thách AI: Tìm X (Nhân, Chia)',
+            'b30': 'Thử thách AI: Tính nhẩm số tròn nghìn',
+            'b31': 'Thử thách AI: Biểu thức 3 phép tính',
+            'b32': 'Thử thách AI: Rèn luyện ngoặc kép',
+            'b33': 'Thử thách AI: Phép chia có dư',
+            'b34': 'Thử thách AI: Dãy tính liên hoàn',
+            'b35': 'Tổng hợp Đảo 4: Đoạt Kho Báu AI'
+        };
+
+        // --- State Variables ---
+        let parentalPassword = localStorage.getItem('parentalPassword') || '452012';
+        let geminiApiKey = localStorage.getItem('geminiApiKey') || '';
+        
+        let quizHistory = [];
+        let currentQuizQuestions = [];
+        let currentScore = 0;
+        let baseStars = 120;
+        let wrongAttempts = 0;
+        let currentQuestionIndex = 0;
+        let isReviewMode = false;
+        let wrongQuestionIndices = [];
+        let currentReviewPointer = 0;
+        let currentAnswer = '';
+        let activeLesson = null;
+        let currentQuestion = null;
+        let TOTAL_QUESTIONS = 10;
+        let currentQuizMode = 'normal'; // 'normal', 'island_boss', 'final_boss'
+        let currentQuizLessonIds = [];
+        let activeIslandId = null;
+        let monsterHP = 100;
+        let gameQuestions = [];
+        let currentGameQuestionIdx = 0;
+        const CURRENT_LESSON_ID = 3; 
+        
+        // --- Navigation ---
+        function showScreen(screenId, lessonData = null) {
+            if (lessonData) {
+                activeLesson = lessonData;
+            }
+            
+            if (screenId === 'video-screen' && activeLesson) {
+                const titleEl = document.getElementById('video-title');
+                if (titleEl) {
+                    const titleStr = activeLesson.name || activeLesson.title || 'Bài học';
+                    const codeStr = activeLesson.id || activeLesson.code || '1';
+                    titleEl.innerText = `📺 Bài ${codeStr}: ${titleStr}`;
+                }
+                const video = document.getElementById('mathVideo');
+                if (video) {
+                    if (activeLesson.id === 3 || activeLesson.code === 'b3') {
+                        video.src = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4';
+                    } else if (activeLesson.id === 2 || activeLesson.code === 'b2') {
+                        video.src = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4';
+                    } else {
+                        video.src = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
+                    }
+                    video.load();
+                    video.currentTime = 0; 
+                }
+            }
+
+            // Quản lý hiển thị nút Cài đặt
+            const settingsBtn = document.getElementById('settings-btn');
+            if (settingsBtn) {
+                if (screenId === 'map-screen') {
+                    settingsBtn.classList.remove('hidden');
+                    settingsBtn.classList.add('flex');
+                } else {
+                    settingsBtn.classList.add('hidden');
+                    settingsBtn.classList.remove('flex');
+                }
+            }
+
+            // Ẩn tất cả màn hình an toàn
+            const allScreens = ['map-screen', 'video-screen', 'quiz-screen', 'summary-screen', 'game-screen'];
+            allScreens.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.add('hidden', 'flex'); // Tailwind uses display:none for hidden
+                if (el) el.classList.remove('flex'); // Ensure flex is removed if hidden
+            });
+            
+            // Hiển thị màn hình mục tiêu
+            const target = document.getElementById(screenId);
+            if (target) {
+                target.classList.remove('hidden');
+                target.classList.add('flex'); // Because our screens are flex-col
+            }
+        }
+
+        // --- Hàm startLesson theo yêu cầu để unlock full Đảo ---
+        function startLesson(lessonId) {
+            activeLesson = { 
+                id: parseInt(lessonId.replace('b', '')) || 1, 
+                code: lessonId,
+                name: lessonTitles[lessonId] || ''
+            };
+            
+            // 1. Ẩn màn hình bản đồ
+            const mapScreen = document.getElementById('map-screen');
+            if (mapScreen) { mapScreen.classList.add('hidden'); mapScreen.classList.remove('flex'); }
+            
+            // 2. Kiểm tra nếu là ải Tổng hợp -> Bỏ qua Video, vào thẳng Làm bài
+            if (lessonId === 'b10' || lessonId === 'b18' || lessonId === 'b27' || lessonId === 'b35') {
+                startQuiz(); 
+            } 
+            // 3. Nếu là các bài học bình thường (b1 đến b9) -> Hiện màn hình Video
+            else {
+                const videoScreen = document.getElementById('video-screen');
+                if (videoScreen) { videoScreen.classList.remove('hidden'); videoScreen.classList.add('flex'); }
+                
+                const videoPlayer = document.getElementById('mathVideo');
+                if (videoPlayer) {
+                    videoPlayer.src = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"; 
+                    videoPlayer.load();
+                }
+                
+                // Cập nhật tiêu đề Video
+                const titleEl = document.getElementById('video-title');
+                if (titleEl) {
+                    let topicName = lessonTitles[lessonId] || 'Chủ đề chưa cập nhật';
+                    titleEl.innerText = `Bài ${lessonId.replace('b', '')}: ${topicName}`;
+                }
+            }
+        }
+
+        function initMap() {
+            const mapContainer = document.getElementById('map-screen-content');
+            mapContainer.innerHTML = ''; 
+            
+            const gridContainer = document.createElement('div');
+            gridContainer.className = 'grid grid-cols-1 md:grid-cols-2 gap-8 p-6 w-full max-w-7xl mx-auto pb-24';
+            
+            LESSON_MAP.forEach((islandData) => {
+                const island = document.createElement('div');
+                // Chuyển container thành flex-col
+                island.className = `island-card ${islandData.theme.bg} ${islandData.theme.border} border-8 rounded-[3rem] shadow-xl p-4 md:p-6 flex flex-col`;
+                
+                // Tiêu đề tách biệt hoàn toàn phía trên (Không dùng position absolute)
+                const headerContainer = document.createElement('div');
+                headerContainer.className = 'w-full text-center relative z-30 mb-6 md:mb-8';
+                
+                const header = document.createElement('div');
+                header.className = `inline-block whitespace-nowrap bg-white/95 px-6 py-2 rounded-full font-black text-xl md:text-2xl shadow-[0_4px_0_rgba(0,0,0,0.1)] border-2 ${islandData.theme.border} ${islandData.theme.text}`;
+                header.innerText = islandData.title;
+                
+                headerContainer.appendChild(header);
+                island.appendChild(headerContainer);
+
+                // Khung Bản đồ tách biệt phía dưới
+                const mapArea = document.createElement('div');
+                mapArea.className = 'relative flex-1 w-full min-h-[450px] md:min-h-[500px] z-0';
+
+                if (islandData.decorations) {
+                    islandData.decorations.forEach(deco => {
+                        const dNode = document.createElement('div');
+                        dNode.className = 'absolute z-10 cursor-pointer pointer-events-auto flex items-center justify-center transition-transform';
+                        dNode.style.cssText = deco.style;
+                        
+                        const emojiWrap = document.createElement('div');
+                        emojiWrap.innerText = deco.emoji;
+                        
+                        if (deco.type === 'tree') {
+                            emojiWrap.className = 'animate-sway origin-bottom';
+                        } else if (deco.type === 'dog') {
+                            emojiWrap.className = 'animate-runDog drop-shadow-lg inline-block origin-center';
+                            emojiWrap.id = 'island-dog';
+                        } else if (deco.type === 'cat') {
+                            emojiWrap.className = 'animate-sway drop-shadow-md transition-all duration-500 inline-block origin-center';
+                            emojiWrap.id = 'island-cat';
+                            
+                            const zzz = document.createElement('div');
+                            zzz.innerText = 'Zzz';
+                            zzz.className = 'absolute -top-4 -right-4 text-lg font-black text-gray-500 animate-floatSlow tracking-widest';
+                            dNode.appendChild(zzz);
+                        }
+                        
+                        dNode.appendChild(emojiWrap);
+                        mapArea.appendChild(dNode);
+                    });
+                }
+
+                const layout = MAP_LAYOUTS[islandData.lessons.length + 1];
+                if (layout) {
+                    const svgNS = "http://www.w3.org/2000/svg";
+                    const svg = document.createElementNS(svgNS, "svg");
+                    svg.setAttribute("viewBox", "0 0 100 100");
+                    svg.setAttribute("preserveAspectRatio", "none");
+                    svg.setAttribute("class", "absolute inset-0 w-full h-full z-0 pointer-events-none");
+                    
+                    const pathShadow = document.createElementNS(svgNS, "path");
+                    pathShadow.setAttribute("d", layout.path);
+                    pathShadow.setAttribute("stroke", islandData.theme.pathShadow);
+                    pathShadow.setAttribute("fill", "none");
+                    pathShadow.setAttribute("stroke-linecap", "round");
+                    pathShadow.setAttribute("vector-effect", "non-scaling-stroke");
+                    pathShadow.setAttribute("stroke-width", "16px"); 
+                    
+                    const pathTop = document.createElementNS(svgNS, "path");
+                    pathTop.setAttribute("d", layout.path);
+                    pathTop.setAttribute("stroke", islandData.theme.path);
+                    pathTop.setAttribute("fill", "none");
+                    pathTop.setAttribute("stroke-linecap", "round");
+                    pathTop.setAttribute("vector-effect", "non-scaling-stroke");
+                    pathTop.setAttribute("stroke-width", "10px");
+                    pathTop.setAttribute("transform", "translate(0, -2)");
+
+                    svg.appendChild(pathShadow);
+                    svg.appendChild(pathTop);
+                    mapArea.appendChild(svg);
+
+                    const nodeCount = islandData.lessons.length + 1;
+                    for (let index = 0; index < nodeCount; index++) {
+                        const pos = layout.nodes[index];
+                        const nodeWrapper = document.createElement('div');
+                        nodeWrapper.className = `absolute z-20 flex flex-col items-center`;
+                        nodeWrapper.style.top = `${pos.y}%`;
+                        nodeWrapper.style.left = `${pos.x}%`;
+                        nodeWrapper.style.transform = `translate(-50%, -50%)`;
+
+                        const btn = document.createElement('button');
+                        const label = document.createElement('div');
+                        
+                        if (index < islandData.lessons.length) {
+                            const lesson = islandData.lessons[index];
+                            
+                            // Đã mở khóa hoàn toàn, class cursor-pointer và hiệu ứng hover
+                            btn.className = `w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center text-3xl md:text-4xl bg-gradient-to-b from-yellow-300 to-orange-500 border-4 border-amber-300 shadow-[0_8px_0_#b45309,0_10px_15px_rgba(0,0,0,0.3)] active:translate-y-[4px] active:shadow-[0_2px_0_#b45309] transition-all cursor-pointer relative hover:brightness-110`;
+                            btn.innerHTML = '⭐';
+                            btn.onclick = () => startLesson(lesson.code);
+                            
+                            label.innerText = `Bài ${lesson.id}`;
+                        } else {
+                            // Boss Node
+                            // Đã mở khóa hoàn toàn, class cursor-pointer và hiệu ứng hover
+                            btn.className = `w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center text-4xl md:text-5xl bg-gradient-to-b from-purple-400 to-purple-600 border-purple-300 shadow-[0_8px_0_#7e22ce,0_10px_15px_rgba(0,0,0,0.3)] cursor-pointer animate-pulse border-4 active:translate-y-[4px] transition-all relative z-10 hover:brightness-110`;
+                            btn.innerHTML = '🎁';
+                            
+                            btn.onclick = () => {
+                                if (islandData.id === 'island-1') {
+                                    startLesson('b10');
+                                } else {
+                                    // Fallback cho các đảo khác
+                                    const nextId = islandData.lessons[islandData.lessons.length - 1].id + 1;
+                                    startLesson('b' + nextId);
+                                }
+                            };
+                            label.innerText = `Tổng hợp Đảo ${islandData.id.split('-')[1]}`;
+                        }
+
+                        label.className = `absolute -bottom-10 left-1/2 -translate-x-1/2 whitespace-nowrap font-bold text-gray-800 bg-white/95 px-4 py-1.5 rounded-xl text-sm md:text-base shadow-sm border-2 ${islandData.theme.border} pointer-events-none z-30 leading-none text-center`;
+                        
+                        nodeWrapper.appendChild(btn);
+                        nodeWrapper.appendChild(label);
+                        mapArea.appendChild(nodeWrapper);
+                    }
+                }
+                
+                island.appendChild(mapArea);
+                gridContainer.appendChild(island);
+            });
+            
+            
+            mapContainer.appendChild(gridContainer);
+            
+            if (CURRENT_LESSON_ID > 31) {
+                unlockFinalExam();
+            }
+        }
+        
+        function unlockFinalExam() {
+            const castle = document.getElementById('final-castle');
+            const lock = document.getElementById('final-lock');
+            const btn = document.getElementById('final-exam-btn');
+            
+            if (castle && lock && btn) {
+                castle.classList.remove('opacity-30', 'grayscale'); // Lấy lại màu cho lâu đài
+                castle.classList.add('animate-bounce'); // Cho lâu đài bay bồng bềnh
+                lock.classList.add('hidden'); // Biến mất ổ khóa
+                
+                // Đổi màu nút bấm thành màu vàng hoàng gia rực rỡ
+                btn.classList.remove('bg-slate-300', 'text-slate-500', 'cursor-not-allowed', 'shadow-[0_6px_0_#94a3b8]');
+                btn.classList.add('bg-gradient-to-r', 'from-amber-400', 'to-orange-500', 'text-amber-950', 'shadow-[0_6px_0_#b45309]', 'cursor-pointer');
+                btn.innerHTML = "👑 KỲ THI TRẠNG NGUYÊN 👑";
+                
+                btn.onclick = () => {
+                    const allLessonIds = LESSON_MAP.flatMap(i => i.lessons.map(l => l.id));
+                    startQuiz('final_boss', allLessonIds);
+                };
+            }
+        }
+
+        // --- Random Math Generator ---
+        function generateQuestions(lessonId) {
+            let questions = [];
+            for (let i = 0; i < 8; i++) {
+                let qText = "", ans = 0, num1, num2;
+                let isAdditionOrMultiplication = Math.random() > 0.5;
+                let multiplier;
+
+                if (lessonId === 'b1') {
+                    // BÀI 1: Cộng trừ có nhớ phạm vi 1000
+                    if (isAdditionOrMultiplication) {
+                        num1 = Math.floor(Math.random() * 800) + 100;
+                        num2 = Math.floor(Math.random() * (990 - num1)) + 10;
+                        ans = num1 + num2; 
+                        qText = `${num1} + ${num2}`;
+                    } else {
+                        num1 = Math.floor(Math.random() * 800) + 200;
+                        num2 = Math.floor(Math.random() * (num1 - 100)) + 50;
+                        ans = num1 - num2; 
+                        qText = `${num1} - ${num2}`;
+                    }
+                } 
+                else if (['b2', 'b3', 'b4', 'b5', 'b6', 'b7', 'b8', 'b9'].includes(lessonId)) {
+                    // TỪ BÀI 2 ĐẾN BÀI 9: Tự động trích xuất bảng nhân/chia tương ứng (2 đến 9)
+                    multiplier = parseInt(lessonId.replace('b', '')); 
+                    num2 = Math.floor(Math.random() * 10) + 1; // Số nhân từ 1 đến 10
+                    
+                    if (isAdditionOrMultiplication) {
+                        ans = multiplier * num2;
+                        qText = `${multiplier} x ${num2}`;
+                    } else {
+                        let dividend = multiplier * num2;
+                        ans = num2;
+                        qText = `${dividend} : ${multiplier}`; // Hiển thị dấu ":" trực quan
+                    }
+                }
+                else if (lessonId === 'b10') {
+                    // BÀI 10 (TỔNG HỢP ĐẢO 1): Mix ngẫu nhiên Cộng/Trừ 1000 và Nhân/Chia 2-9
+                    let randomType = Math.floor(Math.random() * 4); // 0: +, 1: -, 2: x, 3: :
+                    if (randomType === 0) {
+                        num1 = Math.floor(Math.random() * 800) + 100;
+                        num2 = Math.floor(Math.random() * (990 - num1)) + 10;
+                        ans = num1 + num2; qText = `${num1} + ${num2}`;
+                    } else if (randomType === 1) {
+                        num1 = Math.floor(Math.random() * 800) + 200;
+                        num2 = Math.floor(Math.random() * (num1 - 100)) + 50;
+                        ans = num1 - num2; qText = `${num1} - ${num2}`;
+                    } else if (randomType === 2) {
+                        multiplier = Math.floor(Math.random() * 8) + 2; // ngẫu nhiên bảng 2-9
+                        num2 = Math.floor(Math.random() * 10) + 1;
+                        ans = multiplier * num2; qText = `${multiplier} x ${num2}`;
+                    } else {
+                        multiplier = Math.floor(Math.random() * 8) + 2; // ngẫu nhiên bảng 2-9
+                        num2 = Math.floor(Math.random() * 10) + 1;
+                        let dividend = multiplier * num2;
+                        ans = num2; qText = `${dividend} : ${multiplier}`;
+                    }
+                }
+                else if (lessonId === 'b11') {
+                    num1 = Math.floor(Math.random() * 80) + 10;
+                    num2 = Math.floor(Math.random() * 8) + 2;
+                    ans = num1 * num2; qText = `${num1} x ${num2} = ?`;
+                }
+                else if (lessonId === 'b12') {
+                    num2 = Math.floor(Math.random() * 8) + 2;
+                    ans = Math.floor(Math.random() * 45) + 10;
+                    let dividend = ans * num2; qText = `${dividend} : ${num2} = ?`;
+                }
+                else if (lessonId === 'b13') {
+                    num1 = Math.floor(Math.random() * 233) + 100;
+                    num2 = Math.floor(Math.random() * 3) + 2;
+                    ans = num1 * num2; qText = `${num1} x ${num2} = ?`;
+                }
+                else if (lessonId === 'b14') {
+                    num2 = Math.floor(Math.random() * 8) + 2;
+                    ans = Math.floor(Math.random() * 100) + 50;
+                    let dividend = ans * num2; qText = `${dividend} : ${num2} = ?`;
+                }
+                else if (lessonId === 'b15') {
+                    num2 = Math.floor(Math.random() * 8) + 2;
+                    let num3 = Math.floor(Math.random() * 8) + 2;
+                    num1 = Math.floor(Math.random() * 50) + 10;
+                    ans = num1 + (num2 * num3); qText = `${num1} + ${num2} x ${num3} = ?`;
+                }
+                else if (lessonId === 'b16') {
+                    num1 = Math.floor(Math.random() * 20) + 10;
+                    num2 = Math.floor(Math.random() * 20) + 10;
+                    let num3 = Math.floor(Math.random() * 5) + 2;
+                    ans = (num1 + num2) * num3; qText = `(${num1} + ${num2}) x ${num3} = ?`;
+                }
+                else if (lessonId === 'b17' || lessonId === 'b18') {
+                    // Random mix toán HKI (Nhân/Chia nhiều chữ số và Biểu thức)
+                    let type = Math.floor(Math.random() * 4);
+                    if (type === 0) {
+                        num1 = Math.floor(Math.random() * 80) + 10; num2 = Math.floor(Math.random() * 8) + 2;
+                        ans = num1 * num2; qText = `${num1} x ${num2} = ?`;
+                    } else if (type === 1) {
+                        num2 = Math.floor(Math.random() * 8) + 2; ans = Math.floor(Math.random() * 100) + 15;
+                        let dividend = ans * num2; qText = `${dividend} : ${num2} = ?`;
+                    } else if (type === 2) {
+                        num2 = Math.floor(Math.random() * 8) + 2; let num3 = Math.floor(Math.random() * 8) + 2;
+                        num1 = Math.floor(Math.random() * 50) + 10;
+                        ans = num1 + (num2 * num3); qText = `${num1} + ${num2} x ${num3} = ?`;
+                    } else {
+                        num1 = Math.floor(Math.random() * 20) + 10; num2 = Math.floor(Math.random() * 20) + 10;
+                        let num3 = Math.floor(Math.random() * 5) + 2;
+                        ans = (num1 - num2 < 0 ? num2 - num1 : num1 - num2) * num3; 
+                        qText = `(${Math.max(num1, num2)} - ${Math.min(num1, num2)}) x ${num3} = ?`;
+                    }
+                }
+                else if (lessonId === 'b19' || lessonId === 'b22') {
+                    // Cộng trừ số lớn (10.000 - 100.000)
+                    let limit = lessonId === 'b19' ? 5000 : 50000;
+                    num1 = Math.floor(Math.random() * limit) + 1000;
+                    num2 = Math.floor(Math.random() * limit) + 1000;
+                    if (Math.random() > 0.5) { ans = num1 + num2; qText = `${num1} + ${num2} = ?`; }
+                    else { ans = Math.max(num1, num2) - Math.min(num1, num2); qText = `${Math.max(num1, num2)} - ${Math.min(num1, num2)} = ?`; }
+                }
+                else if (lessonId === 'b20' || lessonId === 'b23') {
+                    // Nhân số có 4, 5 chữ số
+                    let base = lessonId === 'b20' ? 1000 : 10000;
+                    num1 = Math.floor(Math.random() * base) + base;
+                    num2 = Math.floor(Math.random() * 4) + 2;
+                    ans = num1 * num2; qText = `${num1} x ${num2} = ?`;
+                }
+                else if (lessonId === 'b21' || lessonId === 'b24') {
+                    // Chia số có 4, 5 chữ số
+                    num2 = Math.floor(Math.random() * 8) + 2;
+                    ans = Math.floor(Math.random() * (lessonId === 'b21' ? 1000 : 10000)) + 100;
+                    let dividend = ans * num2; qText = `${dividend} : ${num2} = ?`;
+                }
+                else if (lessonId === 'b28' || lessonId === 'b29') {
+                    // Tìm X
+                    num1 = Math.floor(Math.random() * 50) + 10;
+                    ans = Math.floor(Math.random() * 50) + 10;
+                    if (lessonId === 'b28') { 
+                        if (Math.random() > 0.5) { qText = `X + ${num1} = ${ans + num1}. X = ?`; }
+                        else { qText = `X - ${num1} = ${ans}. X = ?`; }
+                    } else { 
+                        num2 = Math.floor(Math.random() * 8) + 2;
+                        ans = Math.floor(Math.random() * 20) + 5;
+                        if (Math.random() > 0.5) { qText = `X x ${num2} = ${ans * num2}. X = ?`; }
+                        else { qText = `X : ${num2} = ${ans}. X = ?`; }
+                    }
+                }
+                else if (lessonId === 'b30') {
+                    // Nhẩm tròn nghìn
+                    num1 = (Math.floor(Math.random() * 9) + 1) * 1000;
+                    num2 = Math.floor(Math.random() * 5) + 2;
+                    if (Math.random() > 0.5) { ans = num1 * num2; qText = `${num1} x ${num2} = ?`; }
+                    else { ans = num1; let div = num1 * num2; qText = `${div} : ${num2} = ?`; }
+                }
+                else if (lessonId === 'b31' || lessonId === 'b34') {
+                    // Biểu thức 3 phép tính liên hoàn
+                    num1 = Math.floor(Math.random() * 20) + 5;
+                    num2 = Math.floor(Math.random() * 10) + 2;
+                    let num3 = Math.floor(Math.random() * 10) + 2;
+                    ans = num1 + (num2 * num3); qText = `${num1} + ${num2} x ${num3} = ?`;
+                }
+                else if (['b25', 'b26', 'b27', 'b32', 'b33', 'b35'].includes(lessonId)) {
+                    // Bài Random Mix cho các ải ôn tập, tổng hợp và La Mã (chuyển thành tính toán khó)
+                    num1 = Math.floor(Math.random() * 1000) + 500;
+                    num2 = Math.floor(Math.random() * 8) + 2;
+                    ans = num1 * num2; qText = `${num1} x ${num2} = ?`;
+                }
+                else {
+                    // DỰ PHÒNG: (Các bài học sau chưa có data sẽ tạm dùng cộng đơn giản)
+                    num1 = Math.floor(Math.random() * 10) + 1;
+                    num2 = Math.floor(Math.random() * 10) + 1;
+                    ans = num1 + num2; qText = `${num1} + ${num2}`;
+                }
+                
+                // Loại bỏ " = ?" nếu lỡ có trong chuỗi gốc
+                qText = qText.replace(" = ?", "");
+
+                questions.push({
+                    question: qText,
+                    correctAnswer: ans.toString(),
+                    q: qText,
+                    a: ans.toString()
+                });
+            }
+            return questions;
+        }
+
+        // --- Screen 3: Quiz Logic ---
+        async function generateHybridQuiz(lessonId) {
+            let quiz = generateQuestions(lessonId); 
+            const apiKey = document.getElementById('gemini-api-key').value || geminiApiKey;
+            const topic = lessonTitles[lessonId] || "Toán tiểu học";
+            
+            if (apiKey) {
+                try {
+                    const prompt = `Tạo ĐÚNG 2 câu hỏi TOÁN CÓ LỜI VĂN cho bé gái tên Bông, trình độ lớp 3, chủ đề: "${topic}".
+                    Trả về mảng JSON thuần túy (không bọc markdown, KHÔNG dùng \`\`\`json), chứa đúng 2 object có 3 thuộc tính: "question", "correctAnswer" (chỉ ghi số), "explanation" (lời giải chi tiết dưới 20 chữ). Ví dụ: [{"question": "...", "correctAnswer": "...", "explanation": "..."}]`;
+
+                    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+                    });
+                    
+                    const data = await response.json();
+                    let rawText = data.candidates[0].content.parts[0].text.replace(/```json|```/g, "").trim();
+                    let aiQuestions = JSON.parse(rawText);
+                    
+                    aiQuestions = aiQuestions.map(q => ({
+                        question: q.question,
+                        correctAnswer: q.correctAnswer.toString(),
+                        q: q.question,
+                        a: q.correctAnswer.toString(),
+                        explanation: q.explanation
+                    }));
+                    
+                    quiz = quiz.concat(aiQuestions);
+                } catch (error) {
+                    console.error("Lỗi AI, tự động bù câu hỏi JS:", error);
+                    let fallback = generateQuestions(lessonId);
+                    quiz = quiz.concat(fallback.slice(0, 2)); 
+                }
+            } else {
+                let fallback = generateQuestions(lessonId);
+                quiz = quiz.concat(fallback.slice(0, 2));
+            }
+            return quiz;
+        }
+
+        async function startQuiz(mode = 'normal', lessonIds = null) {
+            const videoBtn = document.querySelector('#video-screen button[onclick="startQuiz()"]');
+            let originalText = "Cháu đã hiểu bài, qua Thách Thức ngay! 🚀";
+            
+            if (videoBtn) {
+                originalText = videoBtn.innerText;
+                // Hiện trạng thái loading để chờ AI
+                videoBtn.innerText = "Gia sư AI đang ra đề... ⏳";
+                videoBtn.disabled = true;
+            }
+            document.body.style.cursor = 'wait';
+
+            try {
+                currentQuizMode = mode;
+                currentQuizLessonIds = lessonIds || (activeLesson ? [activeLesson.code] : ['b1']);
+                let targetLesson = currentQuizLessonIds[0];
+                
+                // BẮT BUỘC PHẢI DÙNG HÀM HYBRID Ở ĐÂY:
+                currentQuizQuestions = await generateHybridQuiz(targetLesson);
+                TOTAL_QUESTIONS = currentQuizQuestions.length; 
+                
+                // Chuyển màn hình
+                showScreen('quiz-screen');
+                
+                // Dừng video đang chạy
+                const videoPlayer = document.getElementById('mathVideo');
+                if (videoPlayer) {
+                    videoPlayer.pause();
+                }
+                
+                const quizTitleEl = document.getElementById('quiz-topic-title');
+                if (quizTitleEl && targetLesson) {
+                    let prefix = targetLesson === 'b10' ? '' : `Bài ${targetLesson.replace('b', '')}: `;
+                    let topicName = lessonTitles[targetLesson] || '';
+                    quizTitleEl.innerText = prefix + topicName;
+                }
+                
+                isReviewMode = false;
+                quizHistory = [];
+                currentQuestionIndex = 0;
+                currentScore = 0;
+                updateProgress();
+                loadQuestion(); // Hiển thị câu hỏi đầu tiên
+                
+            } catch (error) {
+                console.error("Lỗi khi start Quiz:", error);
+                alert("Có lỗi khi tạo đề, vui lòng F5 thử lại!");
+            } finally {
+                // Trả lại trạng thái nút ban đầu
+                if (videoBtn) {
+                    videoBtn.innerText = originalText;
+                    videoBtn.disabled = false;
+                }
+                document.body.style.cursor = 'default';
+            }
+        }
+
+        function retryQuiz() {
+            isReviewMode = true;
+            wrongQuestionIndices = [];
+            quizHistory.forEach((item, index) => {
+                if (!item.isCorrect) wrongQuestionIndices.push(index);
+            });
+            
+            if (wrongQuestionIndices.length === 0) return;
+            
+            currentReviewPointer = 0;
+            updateProgress();
+            loadReviewQuestion();
+            showScreen('quiz-screen');
+        }
+
+        function loadReviewQuestion(keepOldAnswer = false) {
+            currentQuestionIndex = wrongQuestionIndices[currentReviewPointer];
+            currentQuestion = currentQuizQuestions[currentQuestionIndex];
+            
+            document.getElementById('question-text').innerText = `${currentQuestion.q} = ?`;
+            document.getElementById('q-index').innerText = currentQuestionIndex + 1;
+            
+            currentAnswer = keepOldAnswer ? quizHistory[currentQuestionIndex].userAnswer : '';
+            document.getElementById('answer-display').innerText = currentAnswer;
+            
+            const qBox = document.getElementById('question-box');
+            qBox.className = 'quiz-box-base border-sky-300';
+            
+            document.getElementById('review-nav').classList.remove('hidden');
+        }
+
+        function prevReviewQuestion() {
+            if (currentReviewPointer > 0) {
+                currentReviewPointer--;
+                loadReviewQuestion(true); // Load old answer
+            }
+        }
+
+        function nextReviewQuestion() {
+            if (currentAnswer) {
+                quizHistory[currentQuestionIndex].userAnswer = currentAnswer;
+                quizHistory[currentQuestionIndex].isCorrect = (currentAnswer === currentQuestion.a);
+            }
+            if (currentReviewPointer < wrongQuestionIndices.length - 1) {
+                currentReviewPointer++;
+                loadReviewQuestion(false); 
+            } else {
+                showSummaryScreen();
+            }
+        }
+
+        function loadQuestion() {
+            wrongAttempts = 0; // Reset attempts
+            currentAnswer = '';
+            document.getElementById('answer-display').innerText = '';
+            
+            currentQuestion = currentQuizQuestions[currentQuestionIndex];
+            document.getElementById('question-text').innerText = `${currentQuestion.q} = ?`;
+            document.getElementById('q-index').innerText = currentQuestionIndex + 1;
+            
+            const qBox = document.getElementById('question-box');
+            // Cập nhật class chuẩn Responsive cho JS thao tác
+            qBox.className = 'quiz-box-base border-sky-300';
+            
+            const revNav = document.getElementById('review-nav');
+            if (revNav) revNav.classList.add('hidden');
+        }
+
+        function appendNumber(num) {
+            if (currentAnswer.length < 4) {
+                currentAnswer += num;
+                document.getElementById('answer-display').innerText = currentAnswer;
+                
+                const display = document.getElementById('answer-display');
+                display.classList.remove('animate__animated', 'animate__pulse');
+                void display.offsetWidth; 
+                display.classList.add('animate__animated', 'animate__pulse');
+            }
+        }
+
+        function clearAnswer() {
+            currentAnswer = '';
+            document.getElementById('answer-display').innerText = '';
+        }
+
+
+        function submitAnswer() {
+            if (!currentAnswer) return;
+            const isCorrect = (currentAnswer === currentQuestion.a);
+            
+            if (isReviewMode) {
+                quizHistory[currentQuestionIndex].userAnswer = currentAnswer;
+                quizHistory[currentQuestionIndex].isCorrect = isCorrect;
+                
+                clearAnswer();
+                if (currentReviewPointer < wrongQuestionIndices.length - 1) {
+                    currentReviewPointer++;
+                    loadReviewQuestion();
+                } else {
+                    showSummaryScreen(); 
+                }
+                return;
+            }
+            
+            if (!currentQuestion.recorded) {
+                quizHistory.push({
+                    qIndex: currentQuestionIndex + 1,
+                    question: currentQuestion.q,
+                    userAnswer: currentAnswer,
+                    correctAnswer: currentQuestion.a,
+                    isCorrect: isCorrect,
+                    explanation: currentQuestion.explanation
+                });
+                currentQuestion.recorded = true;
+            }
+            
+            if (isCorrect) {
+                animateScoreIncrement();
+            }
+
+            // Chuyển luôn sang câu mới, KHÔNG CÓ POPUP cản trở
+            clearAnswer();
+            if (currentQuestionIndex < TOTAL_QUESTIONS - 1) {
+                currentQuestionIndex++;
+                updateProgress();
+                loadQuestion();
+            } else {
+                updateProgress(true);
+                showSummaryScreen();
+            }
+        }
+
+        function animateScoreIncrement() {
+            const headerStars = document.getElementById('header-stars');
+            const targetScore = currentScore + 10;
+            
+            headerStars.parentElement.classList.add('scale-110');
+            
+            const timer = setInterval(() => {
+                currentScore++;
+                baseStars++;
+                headerStars.innerText = baseStars;
+                
+                if (currentScore >= targetScore) {
+                    clearInterval(timer);
+                    setTimeout(() => {
+                        headerStars.parentElement.classList.remove('scale-110');
+                    }, 300);
+                }
+            }, 50);
+        }
+
+        function updateProgress(isEnd = false) {
+            const base = 10; 
+            const progress = isEnd ? 100 : base + (currentQuestionIndex / TOTAL_QUESTIONS) * (100 - base);
+            document.getElementById('progress-bar').style.width = `${progress}%`;
+        }
+
+
+        function showSummaryScreen() {
+            const totalQ = quizHistory.length;
+            const numCorrect = quizHistory.filter(h => h.isCorrect).length;
+            const scoreText = numCorrect < (totalQ / 2) 
+                ? `Bé Bông cố gắng lên nhé: ${numCorrect}/${totalQ} điểm! 💪`
+                : `Bé Bông xuất sắc đạt: ${numCorrect}/${totalQ} điểm! ⭐️`;
+            document.getElementById('summary-score').innerText = scoreText;
+            
+
+            if (numCorrect === totalQ) {
+                setTimeout(() => {
+                    startVictoryConfetti(currentQuizMode);
+                }, 500);
+            } else if (numCorrect >= totalQ * 0.8) {
+                setTimeout(() => {
+                    confetti({ particleCount: 500, spread: 150, origin: { y: 0.3 } });
+                }, 500);
+            }
+            
+            const tbody = document.getElementById('summary-table-body');
+            tbody.innerHTML = '';
+            
+            quizHistory.forEach(item => {
+                const row = document.createElement('div');
+                row.className = 'grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-4 items-center bg-gray-50 p-4 rounded-xl border-2 border-gray-200 text-center shadow-sm';
+                
+                const isCorrect = item.isCorrect;
+                row.innerHTML = `
+                    <div class="font-bold text-gray-500 md:text-gray-700"><span class="md:hidden">Câu: </span>${item.qIndex}</div>
+                    <div class="font-black text-xl md:text-2xl text-slate-700">${item.question}</div>
+                    <div class="font-black text-xl md:text-2xl ${isCorrect ? 'text-green-600' : 'text-pink-500'}"><span class="md:hidden text-gray-500 text-base font-normal">Đã chọn: </span>${item.userAnswer}</div>
+                    <div class="font-bold text-lg md:text-xl flex flex-col items-center justify-center">
+                        ${isCorrect 
+                            ? '<span class="text-green-600 bg-green-100 px-3 py-1 rounded-full">✅ Chính xác</span>' 
+                            : `<span class="text-red-500 bg-red-100 px-3 py-1 rounded-full whitespace-nowrap mb-1">❌ Sai</span><span class="text-sm text-gray-500">Đúng: ${item.correctAnswer}</span>`}
+                        ${item.explanation ? `<button onclick="alert('${item.explanation.replace(/'/g, "\\'")}')" class="mt-2 text-xs bg-indigo-100 text-indigo-700 px-2 py-1 rounded shadow-sm hover:bg-indigo-200 active:scale-95 transition-all">💡 Xem lời giải Gia sư AI</button>` : ''}
+                    </div>
+                `;
+                tbody.appendChild(row);
+            });
+            
+            showScreen('summary-screen');
+        }
+        
+        let victoryConfettiInterval;
+        function startVictoryConfetti(mode = 'normal') {
+            const end = Date.now() + 5 * 1000;
+            const modal = document.getElementById('victory-overlay');
+            const box = document.getElementById('victory-box');
+            
+            const titleElem = box.querySelector('h2');
+            const subtitleElem = box.querySelector('p');
+            
+            if (mode === 'final_boss') {
+                titleElem.innerText = "🏆 TRẠNG NGUYÊN TOÁN HỌC 🏆";
+                subtitleElem.innerText = "Con đã xuất sắc vượt qua toàn bộ thử thách! Bố vô cùng tự hào về con! 🎆";
+            } else if (mode === 'island_boss') {
+                titleElem.innerText = "🎉 PHÁ ĐẢO THÀNH CÔNG! 🎉";
+                subtitleElem.innerText = "Rương kho báu đã được mở! Con đã chinh phục được hòn đảo này! 🏴‍☠️";
+            } else {
+                titleElem.innerText = "🎉 XUẤT SẮC QUÁ BÔNG ƠI! 🎉";
+                subtitleElem.innerText = "Con đã chinh phục điểm số tuyệt đối! Bố tự hào về con! ❤️";
+            }
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            setTimeout(() => {
+                box.classList.remove('animate-scale-up', 'animate-fade-in');
+                void box.offsetWidth;
+                box.classList.add('animate-scale-up', 'animate-fade-in');
+            }, 10);
+
+            (function frame() {
+                confetti({
+                    particleCount: 5,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0, y: 0.8 },
+                    colors: ['#fbbf24', '#f59e0b', '#d97706', '#ef4444', '#3b82f6']
+                });
+                confetti({
+                    particleCount: 5,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1, y: 0.8 },
+                    colors: ['#fbbf24', '#f59e0b', '#d97706', '#10b981', '#a855f7']
+                });
+                confetti({
+                    particleCount: 5,
+                    spread: 100,
+                    origin: { x: 0.5, y: 0.5 },
+                    colors: ['#ffffff', '#fbbf24']
+                });
+
+                if (Date.now() < end) {
+                    victoryConfettiInterval = requestAnimationFrame(frame);
+                }
+            }());
+        }
+
+        function closeVictoryModal() {
+            cancelAnimationFrame(victoryConfettiInterval);
+            const modal = document.getElementById('victory-modal');
+            const box = document.getElementById('victory-box');
+            
+            box.classList.remove('animate__bounceIn', 'scale-100', 'opacity-100');
+            box.classList.add('scale-0', 'opacity-0');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 500);
+        }
+
+        function openSettings() {
+            let pwd = prompt("Nhập mật khẩu hiện tại của Phụ huynh để vào Cài đặt:");
+            if (pwd === parentalPassword) {
+                document.getElementById('input-parental-pass').value = parentalPassword !== '452012' ? parentalPassword : '';
+                document.getElementById('gemini-api-key').value = geminiApiKey;
+                const modal = document.getElementById('settings-modal');
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            } else if (pwd !== null) {
+                alert("Mật khẩu chưa chính xác! 🔒");
+            }
+        }
+
+        function closeSettings() {
+            const modal = document.getElementById('settings-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function saveSettings() {
+            const newPass = document.getElementById('input-parental-pass').value.trim();
+            const newKey = document.getElementById('gemini-api-key').value.trim();
+            
+            parentalPassword = newPass || '452012';
+            geminiApiKey = newKey;
+            
+            localStorage.setItem('parentalPassword', parentalPassword);
+            localStorage.setItem('geminiApiKey', geminiApiKey);
+            
+            alert("Đã lưu cấu hình thành công! 💾");
+            closeSettings();
+        }
+
+        function resetAndGoMap() {
+            let password = prompt("Nhập mã bảo vệ của Phụ huynh để quay lại bản đồ:");
+            if (password === parentalPassword) {
+                quizHistory = [];
+                currentQuizQuestions = [];
+                currentQuestionIndex = 0;
+                isReviewMode = false;
+                updateProgress(); // Reset về 0%
+                showScreen('map-screen');
+            } else if (password !== null) {
+                alert("Mã bảo vệ chưa chính xác! 🔒");
+            }
+        }
+
+        function initKeypad() {
+            const keypadContainer = document.getElementById('keypad');
+            const buttons = [
+                { text: '1', colors: 'from-red-400 to-red-500 border-red-300 shadow-[0_8px_0_#991b1b] active:shadow-[0_2px_0_#991b1b]' },
+                { text: '2', colors: 'from-orange-400 to-orange-500 border-orange-300 shadow-[0_8px_0_#c2410c] active:shadow-[0_2px_0_#c2410c]' },
+                { text: '3', colors: 'from-amber-400 to-amber-500 border-amber-300 shadow-[0_8px_0_#b45309] active:shadow-[0_2px_0_#b45309]' },
+                { text: '4', colors: 'from-green-400 to-green-500 border-green-300 shadow-[0_8px_0_#166534] active:shadow-[0_2px_0_#166534]' },
+                { text: '5', colors: 'from-emerald-400 to-emerald-500 border-emerald-300 shadow-[0_8px_0_#065f46] active:shadow-[0_2px_0_#065f46]' },
+                { text: '6', colors: 'from-teal-400 to-teal-500 border-teal-300 shadow-[0_8px_0_#115e59] active:shadow-[0_2px_0_#115e59]' },
+                { text: '7', colors: 'from-cyan-400 to-cyan-500 border-cyan-300 shadow-[0_8px_0_#155e75] active:shadow-[0_2px_0_#155e75]' },
+                { text: '8', colors: 'from-blue-400 to-blue-500 border-blue-300 shadow-[0_8px_0_#1e3a8a] active:shadow-[0_2px_0_#1e3a8a]' },
+                { text: '9', colors: 'from-indigo-400 to-indigo-500 border-indigo-300 shadow-[0_8px_0_#3730a3] active:shadow-[0_2px_0_#3730a3]' },
+                { text: 'X', colors: 'from-gray-300 to-gray-400 border-gray-200 shadow-[0_8px_0_#4b5563] active:shadow-[0_2px_0_#4b5563] text-gray-700', action: 'clear' },
+                { text: '0', colors: 'from-violet-400 to-violet-500 border-violet-300 shadow-[0_8px_0_#5b21b6] active:shadow-[0_2px_0_#5b21b6]' },
+                { text: 'OK', colors: 'from-lime-400 to-green-500 border-lime-300 shadow-[0_8px_0_#166534] active:shadow-[0_2px_0_#166534]', action: 'submit' }
+            ];
+
+            buttons.forEach(btn => {
+                const el = document.createElement('button');
+                el.className = `w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-2xl md:rounded-[2rem] text-3xl md:text-5xl font-black flex items-center justify-center focus:outline-none bg-gradient-to-b border-4 active:translate-y-[6px] transition-all ${btn.colors} ${btn.action === 'clear' ? '' : 'text-white drop-shadow-md'}`;
+                el.innerText = btn.text;
+                
+                if (btn.action === 'clear') {
+                    el.onclick = clearAnswer;
+                    el.innerHTML = '✖';
+                } else if (btn.action === 'submit') {
+                    el.onclick = submitAnswer;
+                    el.innerHTML = '➡';
+                    el.classList.add('animate__animated', 'animate__pulse', 'animate__infinite');
+                } else {
+                    el.onclick = () => appendNumber(btn.text);
+                }
+                keypadContainer.appendChild(el);
+            });
+        }
+
+        function initEasterEggs() {
+            document.querySelectorAll('.interactive-cloud').forEach(cloud => {
+                cloud.addEventListener('click', function(e) {
+                    e.stopPropagation(); 
+                    this.classList.add('animate__animated', 'animate__headShake', 'grayscale', 'brightness-50');
+                    setTimeout(() => {
+                        this.classList.remove('animate__animated', 'animate__headShake', 'grayscale', 'brightness-50');
+                    }, 1000);
+                });
+            });
+
+            document.getElementById('map-screen').addEventListener('click', function(e) {
+                if (e.target.closest('.island-card') || 
+                    e.target.closest('button') || 
+                    e.target.closest('.fixed.top-0') ||
+                    e.target.closest('.interactive-cloud')) {
+                    return;
+                }
+                spawnBubbles(e.clientX, e.clientY);
+            });
+
+            document.querySelectorAll('.interactive-ocean').forEach(creature => {
+                creature.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    spawnBubbles(e.clientX, e.clientY);
+                    
+                    this.classList.add('animate__animated', 'animate__rubberBand');
+                    setTimeout(() => {
+                        this.classList.remove('animate__animated', 'animate__rubberBand');
+                    }, 1000);
+                });
+            });
+
+            const dog = document.getElementById('island-dog');
+            if (dog) {
+                dog.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    showFloatingText(e.clientX, e.clientY, "Gâu Gâu! 🎉", "text-orange-600");
+                    
+                    this.classList.remove('animate-runDog');
+                    this.classList.add('animate__animated', 'animate__bounce');
+                    setTimeout(() => {
+                        this.classList.remove('animate__animated', 'animate__bounce');
+                        this.classList.add('animate-runDog');
+                    }, 1000);
+                });
+            }
+
+            const cat = document.getElementById('island-cat');
+            if (cat) {
+                cat.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    showFloatingText(e.clientX, e.clientY, "Meo meo~ ❤️", "text-pink-500");
+                    
+                    this.style.transform = 'rotate(360deg) scale(0.8)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 1000);
+                });
+            }
+        }
+
+        function showFloatingText(x, y, text, colorClass) {
+            const txt = document.createElement('div');
+            txt.className = `fixed z-50 font-black text-2xl md:text-3xl bg-white/95 px-4 py-2 rounded-3xl border-4 shadow-xl pointer-events-none animate-bubble ${colorClass}`;
+            txt.innerText = text;
+            txt.style.left = `${x - 40}px`;
+            txt.style.top = `${y - 40}px`;
+            document.body.appendChild(txt);
+            setTimeout(() => txt.remove(), 1500);
+        }
+
+        function spawnBubbles(x, y) {
+            for (let i = 0; i < 5; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'fixed rounded-full border-[3px] border-white/60 bg-white/20 pointer-events-none animate-bubble z-40';
+                
+                const size = Math.random() * 20 + 15;
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                
+                const offsetX = (Math.random() - 0.5) * 60;
+                bubble.style.left = `${x + offsetX - size/2}px`;
+                bubble.style.top = `${y - size/2}px`;
+                
+                bubble.style.animationDelay = `${Math.random() * 0.2}s`;
+                bubble.style.animationDuration = `${1 + Math.random() * 1}s`;
+                
+                document.body.appendChild(bubble);
+                
+                setTimeout(() => {
+                    bubble.remove();
+                }, 2000);
+            }
+        }
+
+        window.onload = () => {
+            initMap();
+            initKeypad();
+            initEasterEggs();
+        };
+    </script>
+</body>
+</html>

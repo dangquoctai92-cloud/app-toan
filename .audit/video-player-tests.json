@@ -1,0 +1,9 @@
+{
+  "allLessons": 81,
+  "stoppedOnExit": true,
+  "providerError": true,
+  "retry": true,
+  "staleCallbackIgnored": true,
+  "offlineFallback": true,
+  "errors": []
+}

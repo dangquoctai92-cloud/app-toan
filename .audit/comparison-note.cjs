@@ -1,0 +1,1 @@
+const fs=require('fs');const p='src/app.js';let s=fs.readFileSync(p,'utf8');s=s.replace("note.textContent='Con đã bỏ qua câu này. Các ô đã điền được giữ lại.';","note.textContent='Con đã bỏ qua câu này. Dấu — là ô chưa điền.';");fs.writeFileSync(p,s);

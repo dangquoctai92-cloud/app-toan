@@ -1,0 +1,430 @@
+{
+  "textProblems": [
+    {
+      "bank": "normal",
+      "code": "b18",
+      "index": 2,
+      "labels": [
+        "góc vuông",
+        "góc không vuông"
+      ]
+    },
+    {
+      "bank": "normal",
+      "code": "b19",
+      "index": 2,
+      "labels": [
+        "AORS",
+        "AOBS",
+        "OSBR",
+        "ASBR"
+      ]
+    },
+    {
+      "bank": "normal",
+      "code": "b19",
+      "index": 4,
+      "labels": [
+        "HOVG",
+        "MPEI",
+        "DLKU"
+      ]
+    },
+    {
+      "bank": "normal",
+      "code": "b19",
+      "index": 5,
+      "labels": [
+        "AEUT",
+        "IXSH",
+        "GNKR",
+        "BLPV"
+      ]
+    },
+    {
+      "bank": "normal",
+      "code": "b22",
+      "index": 1,
+      "labels": [
+        "Hình 1",
+        "Hình 2",
+        "Hình 3"
+      ]
+    },
+    {
+      "bank": "normal",
+      "code": "b22",
+      "index": 4,
+      "labels": [
+        "AOD",
+        "LADQ",
+        "LAOD",
+        "AODQ"
+      ]
+    },
+    {
+      "bank": "normal",
+      "code": "b25",
+      "index": 2,
+      "labels": [
+        "Nam",
+        "Nam"
+      ]
+    },
+    {
+      "bank": "normal",
+      "code": "b30",
+      "index": 3,
+      "labels": [
+        "Kiến"
+      ]
+    },
+    {
+      "bank": "normal",
+      "code": "b33",
+      "index": 1,
+      "labels": [
+        "Hải Phòng"
+      ]
+    },
+    {
+      "bank": "normal",
+      "code": "b33",
+      "index": 5,
+      "labels": [
+        "nóng",
+        "bình thường"
+      ]
+    },
+    {
+      "bank": "normal",
+      "code": "b46",
+      "index": 2,
+      "labels": [
+        "Nam",
+        "Nam"
+      ]
+    },
+    {
+      "bank": "normal",
+      "code": "b46",
+      "index": 3,
+      "labels": [
+        "Cầu Nhật Tân",
+        "Cầu Đình Vũ – Cát Hải",
+        "Cầu Vĩnh Thịnh",
+        "Cầu Nhật Tân"
+      ]
+    },
+    {
+      "bank": "normal",
+      "code": "b46",
+      "index": 5,
+      "labels": [
+        "8152",
+        "2581",
+        "2518",
+        "1528"
+      ]
+    },
+    {
+      "bank": "normal",
+      "code": "b46",
+      "index": 6,
+      "labels": [
+        "Pu Si Lung",
+        "Phan-xi-păng",
+        "Lảo Thẩn",
+        "Pu Si Lung"
+      ]
+    },
+    {
+      "bank": "normal",
+      "code": "b47",
+      "index": 5,
+      "labels": [
+        "XVIII",
+        "XVIII",
+        "XVIII"
+      ]
+    },
+    {
+      "bank": "normal",
+      "code": "b48",
+      "index": 3,
+      "labels": [
+        "hàng chục",
+        "hàng trăm",
+        "hàng chục",
+        "hàng trăm"
+      ]
+    },
+    {
+      "bank": "normal",
+      "code": "b48",
+      "index": 4,
+      "labels": [
+        "hàng chục",
+        "hàng trăm"
+      ]
+    },
+    {
+      "bank": "normal",
+      "code": "b7",
+      "index": 1,
+      "labels": [
+        "hộp chữ nhật",
+        "lập phương",
+        "hộp chữ nhật",
+        "lập phương"
+      ]
+    },
+    {
+      "bank": "normal",
+      "code": "b7",
+      "index": 2,
+      "labels": [
+        "MNB",
+        "MCA",
+        "CON",
+        "MOB"
+      ]
+    },
+    {
+      "bank": "normal",
+      "code": "b8",
+      "index": 1,
+      "labels": [
+        "Gấu trắng Bắc Cực",
+        "Gấu trắng Bắc Cực",
+        "Gấu trắng Bắc Cực",
+        "Gấu trắng Bắc Cực"
+      ]
+    },
+    {
+      "bank": "normal",
+      "code": "b45",
+      "index": 5,
+      "labels": [
+        "chín nghìn sáu trăm năm mươi chín",
+        "chín nghìn sáu trăm chín mươi lăm",
+        "chín nghìn năm trăm sáu mươi chín",
+        "hai nghìn không trăm tám mươi lăm"
+      ]
+    },
+    {
+      "bank": "normal",
+      "code": "b45",
+      "index": 8,
+      "labels": [
+        "một nghìn ba trăm tám mươi hai",
+        "một nghìn tám trăm ba mươi hai",
+        "một nghìn ba trăm hai mươi tám"
+      ]
+    },
+    {
+      "bank": "normal",
+      "code": "b45",
+      "index": 9,
+      "labels": [
+        "chín nghìn năm trăm ba mươi tư",
+        "chín nghìn ba trăm năm mươi tư",
+        "chín nghìn năm trăm bốn mươi ba",
+        "chín nghìn năm trăm linh tám"
+      ]
+    },
+    {
+      "bank": "normal",
+      "code": "b49",
+      "index": 4,
+      "labels": [
+        "Nam",
+        "Nam",
+        "Nam"
+      ]
+    },
+    {
+      "bank": "normal",
+      "code": "b51",
+      "index": 4,
+      "labels": [
+        "năm nghìn hai trăm chín mươi chín",
+        "năm nghìn ba trăm linh một",
+        "năm nghìn ba trăm"
+      ]
+    },
+    {
+      "bank": "normal",
+      "code": "b52",
+      "index": 8,
+      "labels": [
+        "Xanh"
+      ]
+    },
+    {
+      "bank": "normal",
+      "code": "b60",
+      "index": 3,
+      "labels": [
+        "xanh lá",
+        "vàng",
+        "xanh dương"
+      ]
+    },
+    {
+      "bank": "normal",
+      "code": "b60",
+      "index": 5,
+      "labels": [
+        "Cẩm Phả",
+        "Lạch Tray",
+        "Thống Nhất",
+        "Thiên Trường"
+      ]
+    },
+    {
+      "bank": "advanced",
+      "code": "b10",
+      "index": 2,
+      "labels": [
+        "Thứ Năm"
+      ]
+    },
+    {
+      "bank": "advanced",
+      "code": "b20",
+      "index": 3,
+      "labels": [
+        "hình chữ nhật",
+        "hình vuông"
+      ]
+    },
+    {
+      "bank": "advanced",
+      "code": "b33",
+      "index": 1,
+      "labels": [
+        "Nha Trang",
+        "Nha Trang",
+        "Nha Trang"
+      ]
+    },
+    {
+      "bank": "advanced",
+      "code": "b33",
+      "index": 2,
+      "labels": [
+        "buổi sáng"
+      ]
+    },
+    {
+      "bank": "advanced",
+      "code": "b33",
+      "index": 6,
+      "labels": [
+        "Nam",
+        "Nam"
+      ]
+    },
+    {
+      "bank": "advanced",
+      "code": "b34",
+      "index": 5,
+      "labels": [
+        "buổi sáng"
+      ]
+    },
+    {
+      "bank": "advanced",
+      "code": "b52",
+      "index": 4,
+      "labels": [
+        "hình vuông",
+        "hình chữ nhật"
+      ]
+    },
+    {
+      "bank": "advanced",
+      "code": "b49",
+      "index": 3,
+      "labels": [
+        "XVIII"
+      ]
+    },
+    {
+      "bank": "advanced",
+      "code": "b67",
+      "index": 4,
+      "labels": [
+        "thứ Năm",
+        "Chủ nhật",
+        "thứ Năm",
+        "Chủ nhật"
+      ]
+    },
+    {
+      "bank": "advanced",
+      "code": "b67",
+      "index": 5,
+      "labels": [
+        "thứ Năm",
+        "Chủ nhật",
+        "thứ Năm",
+        "Chủ nhật"
+      ]
+    },
+    {
+      "bank": "advanced",
+      "code": "b70",
+      "index": 6,
+      "labels": [
+        "Trại thứ nhất"
+      ]
+    }
+  ],
+  "mobileNavigation": [
+    {
+      "text": "Học",
+      "label": null
+    },
+    {
+      "text": "Hồ sơ",
+      "label": null
+    }
+  ],
+  "missingMessage": {
+    "unchanged": true,
+    "alerts": 0
+  },
+  "reviewButton": [
+    "",
+    "CÂU TRƯỚC",
+    "CÂU SAU →"
+  ],
+  "isolatedLayoutFix": [
+    {
+      "size": {
+        "width": 390,
+        "height": 844
+      },
+      "all": 1136,
+      "bad": 0
+    },
+    {
+      "size": {
+        "width": 1366,
+        "height": 768
+      },
+      "all": 1136,
+      "bad": 0
+    },
+    {
+      "size": {
+        "width": 390,
+        "height": 500
+      },
+      "all": 1136,
+      "bad": 0
+    }
+  ]
+}

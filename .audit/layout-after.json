@@ -1,0 +1,38 @@
+[
+  {
+    "size": {
+      "width": 390,
+      "height": 844
+    },
+    "totals": {
+      "all": 1136,
+      "horizontalScroll": 84,
+      "smallTargets": 0
+    },
+    "bad": []
+  },
+  {
+    "size": {
+      "width": 1366,
+      "height": 768
+    },
+    "totals": {
+      "all": 1136,
+      "horizontalScroll": 0,
+      "smallTargets": 0
+    },
+    "bad": []
+  },
+  {
+    "size": {
+      "width": 390,
+      "height": 500
+    },
+    "totals": {
+      "all": 1136,
+      "horizontalScroll": 84,
+      "smallTargets": 0
+    },
+    "bad": []
+  }
+]

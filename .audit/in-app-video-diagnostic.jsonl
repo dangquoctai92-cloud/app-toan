@@ -1,0 +1,43 @@
+{"type":"environment","data":{"ua":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36","origin":"http://127.0.0.1:8780","secure":true,"h264":"probably","vp9":"probably","mediaSource":true},"at":1789307261111}
+{"type":"frame-created","data":{"src":"https://www.youtube-nocookie.com/embed/-BWsoG5_C4A?enablejsapi=1&autoplay=1&mute=1&playsinline=1&origin=http%3A%2F%2F127.0.0.1%3A8780"},"at":1789307261114}
+{"type":"api-script-loaded","data":{},"at":1789307261339}
+{"type":"api-ready","data":{},"at":1789307261342}
+{"type":"progress","data":{},"at":1789307263358}
+{"type":"progress","data":{},"at":1789307265343}
+{"type":"progress","data":{},"at":1789307267355}
+{"type":"progress","data":{},"at":1789307269354}
+{"type":"progress","data":{},"at":1789307271353}
+{"type":"progress","data":{},"at":1789307273351}
+{"type":"progress","data":{},"at":1789307275359}
+{"type":"resource-timing","data":[{"name":"https://www.youtube.com/iframe_api","duration":220.79999999701977,"bytes":0},{"name":"https://www.youtube.com/s/player/8c3fda2d/www-widgetapi.vflset/www-widgetapi.js","duration":2.399999998509884,"bytes":0}],"at":1789307276127}
+{"type":"progress","data":{},"at":1789307277355}
+{"type":"progress","data":{},"at":1789307279355}
+{"type":"progress","data":{},"at":1789307281355}
+{"type":"progress","data":{},"at":1789307283351}
+{"type":"progress","data":{},"at":1789307285351}
+{"type":"progress","data":{},"at":1789307287355}
+{"type":"progress","data":{},"at":1789307289357}
+{"type":"progress","data":{},"at":1789307291357}
+{"type":"environment","data":{"ua":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36","origin":"http://127.0.0.1:8780","secure":true,"h264":"probably","vp9":"probably","mediaSource":true},"at":1789307323462}
+{"type":"frame-created","data":{"src":"https://www.youtube.com/embed/-BWsoG5_C4A?enablejsapi=1&autoplay=1&mute=1&playsinline=1&origin=http%3A%2F%2F127.0.0.1%3A8780"},"at":1789307323466}
+{"type":"api-script-loaded","data":{},"at":1789307323716}
+{"type":"api-ready","data":{},"at":1789307323757}
+{"type":"progress","data":{},"at":1789307325765}
+{"type":"progress","data":{},"at":1789307327774}
+{"type":"progress","data":{},"at":1789307329761}
+{"type":"progress","data":{},"at":1789307331761}
+{"type":"progress","data":{},"at":1789307333759}
+{"type":"progress","data":{},"at":1789307335773}
+{"type":"progress","data":{},"at":1789307337759}
+{"type":"resource-timing","data":[{"name":"https://www.youtube.com/iframe_api","duration":238.60000000149012,"bytes":0},{"name":"https://www.youtube.com/s/player/8c3fda2d/www-widgetapi.vflset/www-widgetapi.js","duration":39,"bytes":0}],"at":1789307338473}
+{"type":"progress","data":{},"at":1789307339767}
+{"type":"progress","data":{},"at":1789307341765}
+{"type":"progress","data":{},"at":1789307343773}
+{"type":"progress","data":{},"at":1789307345769}
+{"type":"progress","data":{},"at":1789307347767}
+{"type":"progress","data":{},"at":1789307349767}
+{"type":"progress","data":{},"at":1789307351771}
+{"type":"progress","data":{},"at":1789307353766}
+{"type":"static-open","data":{},"at":1789307439344}
+{"type":"static-frame-load","data":{"id":"local","src":"http://127.0.0.1:8780/child"},"at":1789307439775}
+{"type":"static-dom","data":[{"html":"<iframe id=\"fixed\" width=\"700\" height=\"420\" src=\"https://www.youtube.com/embed/-BWsoG5_C4A?autoplay=1&amp;mute=1\" allow=\"autoplay; encrypted-media; fullscreen\" referrerpolicy=\"strict-origin-when-cross-origin\"></iframe>","rect":{"w":704,"h":424}},{"html":"<iframe id=\"local\" src=\"/child\" width=\"250\" height=\"200\"></iframe>","rect":{"w":254,"h":204}}],"at":1789307449363}

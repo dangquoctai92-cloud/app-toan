@@ -1,0 +1,8 @@
+const fs=require('fs'),vm=require('vm'),crypto=require('crypto'),cp=require('child_process');
+const source=fs.readFileSync('index.html','utf8'),js=source.match(/<script>([\s\S]*?)<\/script>/)[1].split('/* ==================== INIT ==================== */')[0];
+const ctx={localStorage:{getItem(){return null},setItem(){}},document:{getElementById(){return {}},querySelectorAll(){return []}},addEventListener(){},setTimeout(){},clearTimeout(){},window:{},console};vm.createContext(ctx);vm.runInContext(js,ctx);
+const manifest=vm.runInContext(`ALL.map(l=>({code:l.c,title:l.n,skill:skillGroup(l),normal:BANKS[l.c].length,advanced:ADV[l.c].length,normalSource:'.sgk/banks/'+l.c+'.js',advancedSource:'.sgk/banks-adv/'+l.c+'.js',textbookReview:'pending-manual-review',videoVerification:VIDEO_CATALOG[l.c]?.verification||'unverified'}))`,ctx);
+fs.writeFileSync('.audit/content-inventory.json',JSON.stringify(manifest,null,2));
+const before=crypto.createHash('sha256').update(fs.readFileSync('index.html')).digest('hex');cp.execFileSync(process.execPath,['.sgk/build.cjs']);const after=crypto.createHash('sha256').update(fs.readFileSync('index.html')).digest('hex');if(before!==after)throw Error('Non-deterministic build');
+const backup=fs.readFileSync('.audit/before-fix-20260913/index.html');const recorded=JSON.parse(fs.readFileSync('.audit/migration.json')).originalSha256;if(crypto.createHash('sha256').update(backup).digest('hex')!==recorded)throw Error('Backup modified');
+const result={buildStable:true,backupIntact:true,originalBytes:backup.length,currentBytes:fs.statSync('index.html').size,sourceBanks:manifest.length*2,sha256:after};fs.writeFileSync('.audit/final-build.json',JSON.stringify(result,null,2));console.log(JSON.stringify(result,null,2));

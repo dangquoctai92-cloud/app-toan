@@ -1,0 +1,102 @@
+[
+  {
+    "width": 320,
+    "screen": "map",
+    "issues": []
+  },
+  {
+    "width": 320,
+    "screen": "video",
+    "issues": []
+  },
+  {
+    "width": 320,
+    "screen": "quiz",
+    "issues": []
+  },
+  {
+    "width": 320,
+    "screen": "score",
+    "issues": []
+  },
+  {
+    "width": 320,
+    "screen": "profile",
+    "issues": []
+  },
+  {
+    "width": 390,
+    "screen": "map",
+    "issues": []
+  },
+  {
+    "width": 390,
+    "screen": "video",
+    "issues": []
+  },
+  {
+    "width": 390,
+    "screen": "quiz",
+    "issues": []
+  },
+  {
+    "width": 390,
+    "screen": "score",
+    "issues": []
+  },
+  {
+    "width": 390,
+    "screen": "profile",
+    "issues": []
+  },
+  {
+    "width": 768,
+    "screen": "map",
+    "issues": []
+  },
+  {
+    "width": 768,
+    "screen": "video",
+    "issues": []
+  },
+  {
+    "width": 768,
+    "screen": "quiz",
+    "issues": []
+  },
+  {
+    "width": 768,
+    "screen": "score",
+    "issues": []
+  },
+  {
+    "width": 768,
+    "screen": "profile",
+    "issues": []
+  },
+  {
+    "width": 1366,
+    "screen": "map",
+    "issues": []
+  },
+  {
+    "width": 1366,
+    "screen": "video",
+    "issues": []
+  },
+  {
+    "width": 1366,
+    "screen": "quiz",
+    "issues": []
+  },
+  {
+    "width": 1366,
+    "screen": "score",
+    "issues": []
+  },
+  {
+    "width": 1366,
+    "screen": "profile",
+    "issues": []
+  }
+]

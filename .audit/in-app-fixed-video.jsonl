@@ -1,0 +1,4 @@
+{"type":"app-open","data":{"ua":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36"},"at":1789348679276}
+{"type":"app-video","data":{"state":"loading","cover":false,"iframe":true,"status":"Đang mở video… Nếu video chưa tự chạy, con bấm ▶ trong khung nhé.","practiceEnabled":true},"at":1789348680328}
+{"type":"app-video","data":{"state":"error","cover":true,"iframe":false,"status":"Trình duyệt chưa tải được khung video. Con thử lại hoặc nhờ ba mẹ mở video bên dưới nhé. Con có thể bấm “Mở video trên YouTube” bên dưới.","practiceEnabled":true},"at":1789348688327}
+{"type":"app-video","data":{"state":"error","cover":true,"iframe":false,"status":"Trình duyệt chưa tải được khung video. Con thử lại hoặc nhờ ba mẹ mở video bên dưới nhé. Con có thể bấm “Mở video trên YouTube” bên dưới.","practiceEnabled":true},"at":1789348699328}

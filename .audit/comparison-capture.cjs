@@ -1,0 +1,1 @@
+const fs=require('fs');const p='tests/comparison.cjs';let s=fs.readFileSync(p,'utf8');s=s.replace("await p.screenshot({path:'.audit/comparison-'+width+'.png'});","await p.screenshot({path:'.audit/comparison-'+width+'.png'});await p.locator('.comparison-solution').screenshot({path:'.audit/comparison-solution-'+width+'.png'});");fs.writeFileSync(p,s);

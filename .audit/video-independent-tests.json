@@ -1,0 +1,9 @@
+{
+  "delayedController": true,
+  "iframeControlsClickable": true,
+  "timeoutKeepsPlayer": true,
+  "autoplayBlocked": true,
+  "errorInvalidatesCallbacks": true,
+  "cleanup": true,
+  "blockedIframeRecovery": true
+}

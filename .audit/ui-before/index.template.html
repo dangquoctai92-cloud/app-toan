@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Bé Bông Học Toán Lớp 3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<style>
+<!-- APP_STYLES -->
+</style>
+</head>
+<body>
+<div id="app-notice" class="app-notice" role="status" hidden></div>
+<div id="sky"></div>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+<div id="particles"></div>
+<div id="burst"></div>
+
+<div class="layout">
+
+<aside class="sidebar">
+  <div class="brand"><span class="owl" data-ic="crown"></span><span>Bé Bông</span></div>
+  <nav>
+    <button class="on" data-nav="map-screen" onclick="goMap()"><i data-ic="map"></i>Học bài</button>
+    <button data-nav="profile-screen" onclick="showScreen('profile-screen')"><i data-ic="user"></i>Hồ sơ</button>
+    <button onclick="openSettings()"><i data-ic="gear"></i>Cài đặt</button>
+  </nav>
+  <div class="foot">Toán lớp 3 · Chương trình GDPT 2018<br>Học mỗi ngày một chút nhé!</div>
+</aside>
+
+<div class="app">
+  <header class="topbar">
+    <div class="brand"><span class="owl" data-ic="crown"></span><span>Bé Bông</span></div>
+    <div class="stats">
+      <div class="chip" id="chip-streak"><span data-ic="fire"></span><span id="header-streak">1</span></div>
+      <div class="chip" id="chip-star"><span data-ic="star"></span><span id="header-stars">0</span></div>
+      <button class="icon-btn" onclick="openSettings()" aria-label="Cài đặt phụ huynh" data-ic="gear"></button>
+    </div>
+  </header>
+
+  <main>
+    <!-- MAP -->
+    <section id="map-screen" class="screen active">
+      <div id="map-content"></div>
+      <div class="final" id="final-box">
+        <div class="castle" id="final-castle" data-ic="castle"></div>
+        <h3>Kỳ Thi Trạng Nguyên Toán 3</h3>
+        <button class="btn gold" id="final-exam-btn" disabled>Cần hoàn thành 4 vùng đất</button>
+      </div>
+    </section>
+
+    <!-- VIDEO -->
+    <section id="video-screen" class="screen">
+      <div class="pad">
+        <div class="sub-head">
+          <button class="back" onclick="goMap()" data-ic="back"></button>
+          <h2 id="video-title">Bài học</h2>
+        </div>
+        <p class="video-source" id="video-source"></p>
+      <p class="video-help">Nếu video không phát, con có thể mở trên YouTube hoặc bắt đầu làm bài bên dưới.</p>
+      <div class="video-wrap">
+          <iframe id="ytFrame" class="hidden" allowfullscreen
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+></iframe>
+          <video id="mathVideo" controls playsinline></video>
+        </div>
+        <a id="yt-link" class="yt-link hidden" target="_blank" rel="noopener">Không xem được? Mở video trên YouTube</a>
+        <div style="height:20px"></div>
+        <button class="btn wide" onclick="startQuiz()" id="video-start-btn">Bắt đầu luyện tập</button>
+        <div style="height:12px"></div>
+        <button class="btn pink wide hidden" id="adv-btn">Thử thách nâng cao</button>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section id="quiz-screen" class="screen">
+      <p class="lesson-label" id="lesson-label"></p>
+      <div class="quiz-top">
+        <button class="back" onclick="resetAndGoMap()" aria-label="Thoát bài làm" data-ic="close"></button>
+        <div class="bar"><i id="progress-bar"></i></div>
+        <div class="chip" id="chip-quiz"><span data-ic="star"></span><span id="quiz-stars">0</span></div>
+      </div>
+      <div class="q-card" id="question-box">
+        <div class="q-tag">Câu <span id="q-index">1</span>/<span id="q-total">10</span></div>
+        <div class="ribbon" id="q-ribbon"><span data-ic="book"></span><span id="q-ribbon-txt">Luyện tập</span></div>
+        <div class="sgk-head"><span class="ex-no" id="ex-no">1</span><span class="cmd" id="q-cmd"></span></div>
+        <div class="sgk-body" id="q-body"></div>
+        <div class="choices hidden" id="choices"></div>
+        <div class="orderpad hidden" id="orderpad"></div>
+      </div>
+      <div class="quiz-actions">
+        <div class="review-nav hidden" id="review-nav">
+          <button class="btn" onclick="submitAnswer()">Kiểm tra lại</button>
+          <button class="btn ghost" onclick="prevReviewQuestion()">Câu trước</button>
+          <button class="btn blue" onclick="nextReviewQuestion()">Câu sau →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUMMARY -->
+    <section id="summary-screen" class="screen">
+      <div class="score-hero">
+        <div class="score-ring">
+          <svg width="150" height="150"><circle cx="75" cy="75" r="66" stroke="rgba(255,255,255,.35)" stroke-width="13" fill="none"/>
+          <circle id="score-arc" cx="75" cy="75" r="66" stroke="var(--green)" stroke-width="13" fill="none" stroke-linecap="round"
+            stroke-dasharray="415" stroke-dashoffset="415" style="transition:stroke-dashoffset 1.1s cubic-bezier(.3,1.2,.4,1)"/></svg>
+          <b id="summary-big">0/10</b>
+        </div>
+        <p id="summary-score">Kết quả bài làm</p>
+
+      </div>
+      <p class="summary-note">Điểm và sao tính theo lần làm đầu.</p>
+      <div class="quiz-actions">
+        <button class="btn blue wide" id="parent-results-btn" onclick="requestParentResults()">Phụ huynh xem kết quả</button>
+      </div>
+      <div id="parent-results" class="hidden">
+        <div class="quiz-actions parent-results-heading">
+          <h2 id="parent-results-title" tabindex="-1">Kết quả chi tiết</h2>
+          <button class="btn ghost wide" onclick="closeParentResults()">Đóng kết quả</button>
+        </div>
+        <p id="summary-review" class="summary-note"></p>
+        <div id="summary-table-body"></div>
+        <div class="quiz-actions">
+          <button class="btn pink wide" id="retry-btn" onclick="retryQuiz()">Làm lại câu sai</button>
+        </div>
+      </div>
+      <div class="quiz-actions">
+        <div style="height:12px"></div>
+        <button class="btn wide hidden" id="adv-after" >Làm tiếp phần nâng cao</button>
+        <div style="height:12px"></div>
+        <button class="btn ghost wide" onclick="goMap()">Về bản đồ</button>
+      </div>
+    </section>
+
+    <!-- PROFILE -->
+    <section id="profile-screen" class="screen">
+      <div class="prof-head">
+        <div class="avatar" data-ic="user"></div>
+        <h2>Bé Bông</h2>
+        <p>Học sinh lớp 3 · Nhà thám hiểm Toán học</p>
+      </div>
+      <div class="cards">
+        <div class="card"><span class="em" data-ic="star"></span><div><b id="p-stars">0</b><span>Tổng sao</span></div></div>
+        <div class="card"><span class="em" data-ic="fire"></span><div><b id="p-streak">1</b><span>Ngày liên tiếp</span></div></div>
+        <div class="card"><span class="em" data-ic="book"></span><div><b id="p-lessons">0</b><span>Bài đã xong</span></div></div>
+        <div class="card"><span class="em" data-ic="target"></span><div><b id="p-acc">0%</b><span>Độ chính xác</span></div></div>
+      </div>
+      <div class="sec-title">Tiến độ từng vùng đất</div>
+      <div class="prog-list" id="prog-list"></div>
+      <div class="sec-title">Huy hiệu</div>
+      <div class="badges" id="badges"></div>
+    </section>
+  </main>
+
+  <nav class="bottomnav">
+    <button class="on" data-nav="map-screen" onclick="goMap()"><i data-ic="map"></i>Học</button>
+    <button data-nav="profile-screen" onclick="showScreen('profile-screen')"><i data-ic="user"></i>Hồ sơ</button>
+  </nav>
+</div>
+
+<aside class="rail">
+  <div class="box">
+    <h4>Thành tích của Bông</h4>
+    <div class="big-stats">
+      <div class="st"><b id="r-stars">0</b><span>Sao</span></div>
+      <div class="st"><b id="r-streak">1</b><span>Ngày liền</span></div>
+      <div class="st"><b id="r-lessons">0</b><span>Bài xong</span></div>
+      <div class="st"><b id="r-acc">0%</b><span>Chính xác</span></div>
+    </div>
+  </div>
+  <div class="box">
+    <h4>Tiến độ</h4>
+    <div id="r-prog"></div>
+  </div>
+  <div class="box tipbox" id="r-tip"></div>
+</aside>
+
+</div>
+
+<div class="overlay" id="victory-overlay" role="dialog" aria-modal="true" aria-label="Thông báo và cài đặt">
+  <div class="sheet">
+    <div class="trophy" data-ic="trophy"></div>
+    <h3>Tuyệt vời quá Bông ơi!</h3>
+    <p id="victory-text">Con làm đúng hết tất cả các câu!</p>
+    <button class="btn wide" onclick="closeVictoryModal()">Tiếp tục</button>
+  </div>
+</div>
+
+<div class="overlay" id="settings-modal" role="dialog" aria-modal="true" aria-label="Thông báo và cài đặt">
+  <div class="sheet">
+    <h3>Cài đặt phụ huynh</h3>
+    <p>Khu vực dành cho ba mẹ</p>
+    <div class="field"><label for="input-parental-pass">Mật khẩu phụ huynh</label>
+      <input type="password" id="input-parental-pass" placeholder="Mặc định 452012"></div>
+    
+    <button class="btn wide" onclick="saveSettings()">Lưu lại</button>
+    <div style="height:10px"></div>
+    <button class="btn ghost wide" id="dev-btn" onclick="toggleDev()">Chế độ kiểm tra: Tắt</button>
+    <div style="height:10px"></div>
+    <button class="btn ghost wide" onclick="resetProgress()">Xoá tiến độ học</button>
+    <div style="height:10px"></div>
+    <button class="btn ghost wide" onclick="closeSettings()">Đóng</button>
+  </div>
+</div>
+
+<dialog id="parent-results-dialog" aria-labelledby="parent-password-title" onclose="clearParentResultsPassword()">
+  <form onsubmit="unlockParentResults(event)">
+    <h3 id="parent-password-title">Phụ huynh xem kết quả</h3>
+    <div class="field">
+      <label for="parent-results-password">Mật khẩu phụ huynh</label>
+      <input type="password" id="parent-results-password" autocomplete="off" required aria-describedby="parent-results-error">
+    </div>
+    <p id="parent-results-error" role="alert"></p>
+    <div class="parent-password-actions">
+      <button class="btn wide" type="submit">Xem kết quả</button>
+      <button class="btn ghost wide" type="button" onclick="document.getElementById('parent-results-dialog').close()">Hủy</button>
+    </div>
+  </form>
+</dialog>
+
+<script>
+<!-- APP_SCRIPT -->
+</script>
+</body>
+</html>

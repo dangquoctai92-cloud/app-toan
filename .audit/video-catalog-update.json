@@ -1,0 +1,488 @@
+[
+  {
+    "lesson": 1,
+    "id": "-BWsoG5_C4A",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 1: Ôn tập các số đến 1000 - Trang 6, 7, 8 | Kết nối tri thức (HAY NHẤT)"
+  },
+  {
+    "lesson": 2,
+    "id": "Fn2_Z6X2c4s",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 2: Ôn tập phép cộng, phép trừ trong phạm vi 1000 - Trang 9, 10 | Kết nối tri thức"
+  },
+  {
+    "lesson": 3,
+    "id": "8MNw7uyVfe8",
+    "changed": false,
+    "title": "Toán Lớp 3 Bài 3: Tìm thành phần trong phép cộng, phép trừ - Trang 11, 13 | Kết nối tri thức"
+  },
+  {
+    "lesson": 4,
+    "id": "I7IsbhhOlfE",
+    "changed": false,
+    "title": "Toán Lớp 3 Bài 4: Ôn tập bảng nhân 2; 5, bảng chia 2; 5 - Trang 14, 15 | Kết nối tri thức"
+  },
+  {
+    "lesson": 5,
+    "id": "FM8TYRtQ5lw",
+    "changed": false,
+    "title": "Toán Lớp 3 Bài 5: Bảng nhân 3, bảng chia 3 - Trang 16, 17, 18 | Kết nối tri thức  (HAY NHẤT)"
+  },
+  {
+    "lesson": 6,
+    "id": "TeA_XYFuMBQ",
+    "changed": false,
+    "title": "Toán Lớp 3 Bài 6: Bảng nhân 4, bảng chia 4 - Trang 19, 20 | Kết nối tri thức (DỄ HIỂU NHẤT)"
+  },
+  {
+    "lesson": 7,
+    "id": "wLA0CrW8DWQ",
+    "changed": false,
+    "title": "Toán Lớp 3 Bài 7: Ôn tập hình học và đo lường - Trang 21, 22, 23 | Kết nối tri thức (HAY NHẤT)"
+  },
+  {
+    "lesson": 8,
+    "id": "Sm7TMqOoH9U",
+    "changed": false,
+    "title": "Toán Lớp 3 Bài 8: Luyện tập chung - Trang 24, 25, 26, 27 | Kết nối tri thức (DỄ HIỂU NHẤT)"
+  },
+  {
+    "lesson": 9,
+    "id": "2ReJyf5tZd0",
+    "changed": false,
+    "title": "Toán Lớp 3 Bài 9: Bảng nhân 6, bảng chia 6 - Trang 28, 29, 30 | Kết nối tri thức (HAY NHẤT)"
+  },
+  {
+    "lesson": 10,
+    "id": "acMXXXz4Mgs",
+    "changed": false,
+    "title": "Toán Lớp 3 Bài 10: Bảng nhân 7, bảng chia 7 - Trang 31, 32 | Kết nối tri thức (DỄ HIỂU NHẤT)"
+  },
+  {
+    "lesson": 11,
+    "id": "TSWxaDvFTW0",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 11: Bảng nhân 8, bảng chia 8 - Trang 33, 35 | Kết nối tri thức (HAY NHẤT)"
+  },
+  {
+    "lesson": 12,
+    "id": "H1HpwYvD1hI",
+    "changed": true,
+    "title": "Toán lớp 3 Bài 12: Bảng nhân 9. Bảng chia 9 - Kết nối tri thức (Quay bảng)"
+  },
+  {
+    "lesson": 13,
+    "id": "o9ELq3zDEE0",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 13: Tìm thành phần trong phép nhân, phép chia - Trang 39, 41 | Kết nối tri thức"
+  },
+  {
+    "lesson": 14,
+    "id": "Qt_lrX-jvPs",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 14: Một phần mấy - Trang 42, 45 | Kết nối tri thức (HAY NHẤT)"
+  },
+  {
+    "lesson": 15,
+    "id": "tCnNq8872SA",
+    "changed": false,
+    "title": "Toán Lớp 3 Bài 15: Luyện tập chung - Trang 46, 48 | Kết nối tri thức (DỄ HIỂU NHẤT)"
+  },
+  {
+    "lesson": 16,
+    "id": "I1lbt80dAS8",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 16: Điểm ở giữa, trung điểm của đoạn thẳng - Trang 49, 51 | Kết nối tri thức"
+  },
+  {
+    "lesson": 17,
+    "id": "7cMNDyyLkUE",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 17: Hình tròn. Tâm, bán kính, đường kính của hình tròn - trang 52 | Kết nối tri thức"
+  },
+  {
+    "lesson": 18,
+    "id": "ntzxAyFRHNI",
+    "changed": true,
+    "title": "Toán lớp 3 Bài 18: Góc, góc vuông, góc không vuông - Kết nối tri thức (Quay bảng)"
+  },
+  {
+    "lesson": 19,
+    "id": "Bld472z5L-o",
+    "changed": false,
+    "title": "Toán lớp 3 Bài 19: Hình tam giác, hình tứ giác, hình chữ nhật, hình vuông - Kết nối tri thức"
+  },
+  {
+    "lesson": 20,
+    "id": "HgW0mOAWue0",
+    "changed": false,
+    "title": "Toán lớp 3 Bài 20: Thực hành vẽ góc vuông, vẽ đường tròn hình vuông hình chữ nhật - Kết nối tri thức"
+  },
+  {
+    "lesson": 21,
+    "id": "h-h9KEjVp0I",
+    "changed": false,
+    "title": "Toán lớp 3 Bài 21: Khối lập phương. Khối hộp hình  chữ nhật - Kết nối tri thức (Quay bảng)"
+  },
+  {
+    "lesson": 22,
+    "id": "VP-TI_gnV4Y",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 22: Luyện tập chung - Trang 65, 66 | Kết nối tri thức (HAY NHẤT)"
+  },
+  {
+    "lesson": 23,
+    "id": "xp-5a2JI1pM",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 23: Nhân số có hai chữ số với số có một chữ số - Trang 67, 68 | Kết nối tri thức"
+  },
+  {
+    "lesson": 24,
+    "id": "euI6oRkX1v8",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 24: Gấp một số lên một số lần - Trang 70, 71 | Kết nối tri thức (HAY NHẤT)"
+  },
+  {
+    "lesson": 25,
+    "id": "Wo1anBelYUY",
+    "changed": false,
+    "title": "Toán lớp 3 Bài 25: Phép chia hết, phép chia có dư - Kết nối tri thức (Quay bảng)"
+  },
+  {
+    "lesson": 26,
+    "id": "N0AjLmV7RPc",
+    "changed": false,
+    "title": "Toán Lớp 3 Bài 26: Chia số có hai chữ số cho số có một chữ số - Trang 75, 76 | Kết nối tri thức"
+  },
+  {
+    "lesson": 27,
+    "id": "0oo6PJO-M-k",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 27: Giảm một số đi một số lần - Trang 79, 80 | Kết nối tri thức (DỄ HIỂU NHẤT)"
+  },
+  {
+    "lesson": 28,
+    "id": "OvymejFzVrY",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 28: Bài toán giải bằng hai bước tính - Trang 81, 82 | Kết nối tri thức (HAY NHẤT)"
+  },
+  {
+    "lesson": 29,
+    "id": "lPRqG9FCNXA",
+    "changed": false,
+    "title": "Toán Lớp 3 Bài 29: Luyện tập chung - Trang 83, 84 | Kết nối tri thức (HAY NHẤT)"
+  },
+  {
+    "lesson": 30,
+    "id": "-nQGqj5fN-E",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 30: Mi-li-mét - Trang 85, 86 | Kết nối tri thức (HAY NHẤT)"
+  },
+  {
+    "lesson": 31,
+    "id": "2GbuY3iiPVI",
+    "changed": false,
+    "title": "Toán Lớp 3 Bài 31: Gam - Trang 87, 88 | Kết nối tri thức (HAY NHẤT)"
+  },
+  {
+    "lesson": 32,
+    "id": "_lYIF1p4s_M",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 32: Mi-li-lít - Trang 89, 90 | Kết nối tri thức (HAY NHẤT)"
+  },
+  {
+    "lesson": 33,
+    "id": "qtv6ys5QiDM",
+    "changed": false,
+    "title": "Toán lớp 3 Bài 33: Nhiệt độ, đơn vị đo nhiệt độ - Kết nối tri thức (Quay bảng)"
+  },
+  {
+    "lesson": 34,
+    "id": "aIqwoG145I4",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 34: Thực hành, trải nghiệm với đơn vị mi-li-mét - Trang 93, 94 | Kết nối tri thức"
+  },
+  {
+    "lesson": 35,
+    "id": "YINUF_h5pH4",
+    "changed": false,
+    "title": "Toán Lớp 3 Bài 35: Luyện tập chung - Trang 95, 96 | Kết nối tri thức (HAY NHẤT)"
+  },
+  {
+    "lesson": 36,
+    "id": "Cn70U1hh53U",
+    "changed": false,
+    "title": "Toán Lớp 3 Bài 36: Nhân số có ba chữ số với số có một chữ số - Trang 97 | Kết nối tri thức(HAY NHẤT)"
+  },
+  {
+    "lesson": 37,
+    "id": "MtG6ZDsr9R4",
+    "changed": false,
+    "title": "Toán Lớp 3 Bài 37: Chia số có ba chữ số cho số có một chữ số - Trang 99, 100 | Kết nối tri thức"
+  },
+  {
+    "lesson": 38,
+    "id": "_2M0RU4Za00",
+    "changed": false,
+    "title": "Toán Lớp 3 Bài 38: Biểu thức số. Tính giá trị của biểu thức số - Trang 104, 105 | Kết nối tri thức"
+  },
+  {
+    "lesson": 39,
+    "id": "rTT14-aG3L4",
+    "changed": false,
+    "title": "Toán lớp 3 Bài 39: So sánh số lớn gấp mấy lần số bé - Kết nối tri thức (Quay bảng)"
+  },
+  {
+    "lesson": 40,
+    "id": "dD04ttxFJP4",
+    "changed": false,
+    "title": "Toán Lớp 3 Bài 40: Luyện tập chung - Trang 111, 112 | Kết nối tri thức (HAY NHẤT)"
+  },
+  {
+    "lesson": 41,
+    "id": "CEXJjCCh4FI",
+    "changed": false,
+    "title": "Toán Lớp 3 Bài 41: Ôn tập phép nhân, phép chia trong phạm vi 100, 1000 - Trang 113, 114 | Kết nối"
+  },
+  {
+    "lesson": 42,
+    "id": "6zdg_0DaAHc",
+    "changed": false,
+    "title": "Toán Lớp 3 Bài 42: Ôn tập biểu thức số - Trang 116 | Kết nối tri thức (DỄ HIỂU NHẤT)"
+  },
+  {
+    "lesson": 43,
+    "id": "RicbNBX1aL8",
+    "changed": false,
+    "title": "Toán Lớp 3 Bài 43: Ôn tập về hình học và đo lường - Trang 118, 119 | Kết nối tri thức (HAY NHẤT)"
+  },
+  {
+    "lesson": 44,
+    "id": "sGnRIzlAKmU",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 44: Ôn tập chung - Trang 120, 121 | Kết nối tri thức (HAY NHẤT)"
+  },
+  {
+    "lesson": 45,
+    "id": "sMhheKqD7gk",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 45: Các số có bốn chữ số. Số 10 000 - Trang 4, 5, 6 | Kết nối tri thức (HAY NHẤT)"
+  },
+  {
+    "lesson": 46,
+    "id": "_EsIJhk8XHw",
+    "changed": false,
+    "title": "Toán Lớp 3 Bài 46: So sánh các số trong phạm vi 10000 - Trang 9 | Kết nối tri thức (HAY NHẤT)"
+  },
+  {
+    "lesson": 47,
+    "id": "R7YMoeg0wVE",
+    "changed": false,
+    "title": "Toán Lớp 3 Bài 47: Làm quen với chữ số La Mã - Trang 12, 14 | Kết nối tri thức (DỄ HIỂU NHẤT)"
+  },
+  {
+    "lesson": 48,
+    "id": "xvfwAKlTKvs",
+    "changed": false,
+    "title": "Toán Lớp 3 Bài 48: Làm tròn số đến hàng chục hàng trăm - Trang 16 | Kết nối tri thức"
+  },
+  {
+    "lesson": 49,
+    "id": "rs4VgRcra8s",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 49: Luyện tập chung - Trang 17, 18, 19 | Kết nối tri thức (HAY NHẤT)"
+  },
+  {
+    "lesson": 50,
+    "id": "Gne4kJ52ah8",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 50: Chu vi hình tam giác, hình tứ giác, hình chữ - Trang 21, 22 | Kết nối tri thức"
+  },
+  {
+    "lesson": 51,
+    "id": "CJE3viwHVoE",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 51: Diện tích của một hình. Xăng-ti-mét vuông - Trang 26, 27 | Kết nối tri thức"
+  },
+  {
+    "lesson": 52,
+    "id": "23O7p72evSY",
+    "changed": false,
+    "title": "Toán lớp 3 Bài 52: Diện tích hình chữ nhật. Diện tích hình vuông - Kết nối tri thức (Quay bảng)"
+  },
+  {
+    "lesson": 53,
+    "id": "DpwzQZqyFYA",
+    "changed": false,
+    "title": "Toán lớp 3 Bài 53: Luyện tập chung Trang 35 - Kết nối tri thức (Quay bảng)"
+  },
+  {
+    "lesson": 54,
+    "id": "bw2CHuwPXxo",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 54: Phép cộng trong phạm vi 10000 - Trang 38, 40 | Kết nối tri thức (HAY NHẤT)"
+  },
+  {
+    "lesson": 55,
+    "id": "DhuEhlLTlOM",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 55: Phép trừ trong phạm vi 10000 - Trang 41, 42 | Kết nối tri thức (DỄ HIỂU NHẤT)"
+  },
+  {
+    "lesson": 56,
+    "id": "w5dowxeyvvY",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 56: Nhân số có bốn chữ số cho số có một chữ số - Trang 43 | Kết nối tri thức"
+  },
+  {
+    "lesson": 57,
+    "id": "2zFcqWmvAoE",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 57: Chia số có bốn chữ số cho số có một chữ số - Trang 47, 48 | Kết nối tri thức"
+  },
+  {
+    "lesson": 58,
+    "id": "UrqWVZ5kcGQ",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 58: Luyện tập chung - Trang 53, 55 | Kết nối tri thức (HAY NHẤT)"
+  },
+  {
+    "lesson": 59,
+    "id": "Z2f2VBJTDmU",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 59: Các số có năm chữ số. Số 100 000 - Trang 56 | Kết nối tri thức (DỄ HIỂU NHẤT)"
+  },
+  {
+    "lesson": 60,
+    "id": "rqQI3RcWO0M",
+    "changed": false,
+    "title": "Toán Lớp 3 Bài 60: So sánh các số trong phạm vi 100 000 - Trang 61, 63 | Kết nối tri thức"
+  },
+  {
+    "lesson": 61,
+    "id": "i-SniS-hqOw",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 61: Làm tròn đến số hàng nghìn, hàng chục nghìn - Trang 64, 65 | Kết nối tri thức"
+  },
+  {
+    "lesson": 62,
+    "id": "wDmkpg4P7mo",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 62: Luyện tập chung - Trang 66, 68 | Kết nối tri thức (DỄ HIỂU NHẤT)"
+  },
+  {
+    "lesson": 63,
+    "id": "yxWIi_4HWYY",
+    "changed": false,
+    "title": "Toán lớp 3 Bài 63: Phép cộng trong phạm vi 100 000 - Kết nối tri thức (Quay bảng)"
+  },
+  {
+    "lesson": 64,
+    "id": "ClKWIeGd1x0",
+    "changed": false,
+    "title": "Toán lớp 3 Bài 64: Phép trừ trong phạm vi 100 000 - Kết nối tri thức (Quay bảng)"
+  },
+  {
+    "lesson": 65,
+    "id": "mi5yITKMtAI",
+    "changed": false,
+    "title": "Toán lớp 3 Bài 65: Luyện tập chung Trang 76 - Kết nối tri thức (Quay bảng)"
+  },
+  {
+    "lesson": 66,
+    "id": "fvujtCLTEzI",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 66: Xem đồng hồ. Tháng - năm - Trang 77, 80 | Kết nối tri thức (HAY NHẤT)"
+  },
+  {
+    "lesson": 67,
+    "id": "I5SF08_nf70",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 67: Thực hành xem đồng hồ, xem lịch - Trang 81, 84 | Kết nối tri thức"
+  },
+  {
+    "lesson": 68,
+    "id": "CEBWn6TR9YM",
+    "changed": false,
+    "title": "Toán lớp 3 Bài 68: Tiền Việt Nam - Kết nối tri thức (Quay bảng)"
+  },
+  {
+    "lesson": 69,
+    "id": "bhshZf-LzUY",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 69: Luyện tập chung - Trang 88, 90 | Kết nối tri thức (DỄ HIỂU NHẤT)"
+  },
+  {
+    "lesson": 70,
+    "id": "yPWWLyNk8Rs",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 70: Nhân số có năm chữ số với số có một chữ số - Trang 94, 95 | Kết nối tri thức"
+  },
+  {
+    "lesson": 71,
+    "id": "yTS4Xxmrx00",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 71: Chia số có năm chữ số với số có một chữ số - Trang 97 | Kết nối tri thức"
+  },
+  {
+    "lesson": 72,
+    "id": "V1ap8FBqeBQ",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 72: Luyện tập chung - Trang 101, 102 | Kết nối tri thức (HAY NHẤT)"
+  },
+  {
+    "lesson": 73,
+    "id": "rCryFQJwIiw",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 73: Thu nhập phân loại ghi chép số liệu bảng số liệu - Trang 103 | Kết nối tri thức"
+  },
+  {
+    "lesson": 74,
+    "id": "S0XEKLPEQ74",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 74: Khả năng xảy ra của một sự kiện - Trang 108 | Kết nối tri thức (HAY NHẤT)"
+  },
+  {
+    "lesson": 75,
+    "id": "JgCbsWtkscs",
+    "changed": false,
+    "title": "Toán Lớp 3 Bài 75: Thực hành trải nghiệm thu nhập phân loại đọc số liệu - trang 110 Kết nối tri thức"
+  },
+  {
+    "lesson": 76,
+    "id": "gcdGGNeZewA",
+    "changed": false,
+    "title": "Toán Lớp 3 Bài 76: Ôn tập các số trong phạm vi 10 000, 100 000 - Trang 112, 113 | Kết nối tri thức"
+  },
+  {
+    "lesson": 77,
+    "id": "9vMAETf5of8",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 77: Ôn tập phép cộng, phép trừ trong phạm vi 100 000 - Trang 115 | Kết nối tri thức"
+  },
+  {
+    "lesson": 78,
+    "id": "wVANBRTlTEY",
+    "changed": false,
+    "title": "Toán Lớp 3 Bài 78: Ôn tập phép nhân phép chia trong phạm vi 100 000 - Trang 118 | Kết nối tri thức"
+  },
+  {
+    "lesson": 79,
+    "id": "wdxcNuUBKZs",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 79: Ôn tập hình học và đo lường - Trang 121, 122 | Kết nối tri thức (HAY NHẤT)"
+  },
+  {
+    "lesson": 80,
+    "id": "qX7o25gneuA",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 80: Ôn tập bảng số liệu khả năng xảy ra của một sự kiện - Trang 123 Kết nối tri thức"
+  },
+  {
+    "lesson": 81,
+    "id": "BJUdc1EGVtE",
+    "changed": true,
+    "title": "Toán Lớp 3 Bài 81: Ôn tập chung - Trang 125, 126 | Kết nối tri thức (HAY NHẤT)"
+  }
+]

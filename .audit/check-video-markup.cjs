@@ -1,0 +1,1 @@
+(async()=>{for(const n of [3,12]){const rows=require('./video-sources.json');const row=rows.find(x=>x.lesson===n),s=await(await fetch(row.url)).text();const matches=[...s.matchAll(/(?:youtube|Video Giải|data-video|data-id|yt-lite|iframe)/gi)].slice(0,14);console.log(JSON.stringify({lesson:n,snippets:matches.map(m=>s.slice(Math.max(0,m.index-100),m.index+300))}));}})();

@@ -1,0 +1,1 @@
+const fs=require('fs');let s=fs.readFileSync('tests/svg-bounds.cjs','utf8');s=s.replace("'.audit/svg-after-813-1366.json'","'.audit/svg-after-'+(process.argv[2]||813)+'-'+(process.argv[3]||1366)+'.json'").replace("'.audit/turtle-after-1366.png'","'.audit/turtle-after-'+(process.argv[3]||1366)+'.png'");fs.writeFileSync('tests/svg-bounds.cjs',s);

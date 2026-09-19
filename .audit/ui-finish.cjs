@@ -1,0 +1,2 @@
+const fs=require('fs');const p='.sgk/banks/b51.js';let s=fs.readFileSync(p,'utf8');if(!s.includes('viewBox="-18 -18 276 236"'))throw Error('Missing triangle');fs.writeFileSync(p,s.replace('viewBox="-18 -18 276 236"','viewBox="-24 -24 288 256"'));
+let readme=fs.readFileSync('README.md','utf8');readme=readme.replace('- `src/core.js`:','- `src/interface.css`: phong cách góc học của Bông, nạp sau các kiểu bài tập để thống nhất giao diện.\n- `src/core.js`:');fs.writeFileSync('README.md',readme);

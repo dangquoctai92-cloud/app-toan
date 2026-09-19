@@ -1,0 +1,22 @@
+[
+  {
+    "width": 390,
+    "originalPreserved": true,
+    "correctValues": true,
+    "stacked": true,
+    "scrollLinked": true,
+    "picksAndSigns": true,
+    "safeText": true,
+    "partialSkipPreserved": true
+  },
+  {
+    "width": 1366,
+    "originalPreserved": true,
+    "correctValues": true,
+    "stacked": true,
+    "scrollLinked": true,
+    "picksAndSigns": true,
+    "safeText": true,
+    "partialSkipPreserved": true
+  }
+]

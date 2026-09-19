@@ -1,0 +1,821 @@
+{
+  "runs": 227200,
+  "blanks": 898740,
+  "types": {
+    "multi": 227200
+  },
+  "lessons": 81,
+  "inventory": [
+    {
+      "bank": "normal",
+      "code": "b1",
+      "count": 11
+    },
+    {
+      "bank": "normal",
+      "code": "b2",
+      "count": 9
+    },
+    {
+      "bank": "normal",
+      "code": "b10",
+      "count": 7
+    },
+    {
+      "bank": "normal",
+      "code": "b11",
+      "count": 6
+    },
+    {
+      "bank": "normal",
+      "code": "b12",
+      "count": 11
+    },
+    {
+      "bank": "normal",
+      "code": "b13",
+      "count": 7
+    },
+    {
+      "bank": "normal",
+      "code": "b14",
+      "count": 7
+    },
+    {
+      "bank": "normal",
+      "code": "b15",
+      "count": 9
+    },
+    {
+      "bank": "normal",
+      "code": "b16",
+      "count": 7
+    },
+    {
+      "bank": "normal",
+      "code": "b17",
+      "count": 4
+    },
+    {
+      "bank": "normal",
+      "code": "b18",
+      "count": 4
+    },
+    {
+      "bank": "normal",
+      "code": "b19",
+      "count": 10
+    },
+    {
+      "bank": "normal",
+      "code": "b20",
+      "count": 5
+    },
+    {
+      "bank": "normal",
+      "code": "b21",
+      "count": 4
+    },
+    {
+      "bank": "normal",
+      "code": "b22",
+      "count": 6
+    },
+    {
+      "bank": "normal",
+      "code": "b23",
+      "count": 6
+    },
+    {
+      "bank": "normal",
+      "code": "b24",
+      "count": 4
+    },
+    {
+      "bank": "normal",
+      "code": "b25",
+      "count": 5
+    },
+    {
+      "bank": "normal",
+      "code": "b26",
+      "count": 10
+    },
+    {
+      "bank": "normal",
+      "code": "b27",
+      "count": 4
+    },
+    {
+      "bank": "normal",
+      "code": "b28",
+      "count": 5
+    },
+    {
+      "bank": "normal",
+      "code": "b29",
+      "count": 8
+    },
+    {
+      "bank": "normal",
+      "code": "b3",
+      "count": 7
+    },
+    {
+      "bank": "normal",
+      "code": "b30",
+      "count": 7
+    },
+    {
+      "bank": "normal",
+      "code": "b31",
+      "count": 4
+    },
+    {
+      "bank": "normal",
+      "code": "b32",
+      "count": 4
+    },
+    {
+      "bank": "normal",
+      "code": "b33",
+      "count": 5
+    },
+    {
+      "bank": "normal",
+      "code": "b34",
+      "count": 7
+    },
+    {
+      "bank": "normal",
+      "code": "b35",
+      "count": 6
+    },
+    {
+      "bank": "normal",
+      "code": "b36",
+      "count": 7
+    },
+    {
+      "bank": "normal",
+      "code": "b37",
+      "count": 8
+    },
+    {
+      "bank": "normal",
+      "code": "b38",
+      "count": 9
+    },
+    {
+      "bank": "normal",
+      "code": "b39",
+      "count": 5
+    },
+    {
+      "bank": "normal",
+      "code": "b4",
+      "count": 9
+    },
+    {
+      "bank": "normal",
+      "code": "b40",
+      "count": 6
+    },
+    {
+      "bank": "normal",
+      "code": "b41",
+      "count": 15
+    },
+    {
+      "bank": "normal",
+      "code": "b42",
+      "count": 9
+    },
+    {
+      "bank": "normal",
+      "code": "b43",
+      "count": 9
+    },
+    {
+      "bank": "normal",
+      "code": "b44",
+      "count": 10
+    },
+    {
+      "bank": "normal",
+      "code": "b46",
+      "count": 8
+    },
+    {
+      "bank": "normal",
+      "code": "b47",
+      "count": 7
+    },
+    {
+      "bank": "normal",
+      "code": "b48",
+      "count": 4
+    },
+    {
+      "bank": "normal",
+      "code": "b5",
+      "count": 7
+    },
+    {
+      "bank": "normal",
+      "code": "b6",
+      "count": 7
+    },
+    {
+      "bank": "normal",
+      "code": "b7",
+      "count": 10
+    },
+    {
+      "bank": "normal",
+      "code": "b8",
+      "count": 17
+    },
+    {
+      "bank": "normal",
+      "code": "b9",
+      "count": 7
+    },
+    {
+      "bank": "normal",
+      "code": "b45",
+      "count": 13
+    },
+    {
+      "bank": "normal",
+      "code": "b49",
+      "count": 12
+    },
+    {
+      "bank": "normal",
+      "code": "b50",
+      "count": 9
+    },
+    {
+      "bank": "normal",
+      "code": "b51",
+      "count": 7
+    },
+    {
+      "bank": "normal",
+      "code": "b52",
+      "count": 10
+    },
+    {
+      "bank": "normal",
+      "code": "b53",
+      "count": 11
+    },
+    {
+      "bank": "normal",
+      "code": "b54",
+      "count": 7
+    },
+    {
+      "bank": "normal",
+      "code": "b55",
+      "count": 7
+    },
+    {
+      "bank": "normal",
+      "code": "b56",
+      "count": 12
+    },
+    {
+      "bank": "normal",
+      "code": "b60",
+      "count": 7
+    },
+    {
+      "bank": "normal",
+      "code": "b61",
+      "count": 6
+    },
+    {
+      "bank": "normal",
+      "code": "b57",
+      "count": 10
+    },
+    {
+      "bank": "normal",
+      "code": "b58",
+      "count": 13
+    },
+    {
+      "bank": "normal",
+      "code": "b62",
+      "count": 10
+    },
+    {
+      "bank": "normal",
+      "code": "b63",
+      "count": 10
+    },
+    {
+      "bank": "normal",
+      "code": "b59",
+      "count": 14
+    },
+    {
+      "bank": "normal",
+      "code": "b64",
+      "count": 10
+    },
+    {
+      "bank": "normal",
+      "code": "b65",
+      "count": 5
+    },
+    {
+      "bank": "normal",
+      "code": "b67",
+      "count": 11
+    },
+    {
+      "bank": "normal",
+      "code": "b66",
+      "count": 7
+    },
+    {
+      "bank": "normal",
+      "code": "b68",
+      "count": 7
+    },
+    {
+      "bank": "normal",
+      "code": "b69",
+      "count": 15
+    },
+    {
+      "bank": "normal",
+      "code": "b71",
+      "count": 10
+    },
+    {
+      "bank": "normal",
+      "code": "b70",
+      "count": 11
+    },
+    {
+      "bank": "normal",
+      "code": "b72",
+      "count": 10
+    },
+    {
+      "bank": "normal",
+      "code": "b73",
+      "count": 7
+    },
+    {
+      "bank": "normal",
+      "code": "b75",
+      "count": 6
+    },
+    {
+      "bank": "normal",
+      "code": "b74",
+      "count": 5
+    },
+    {
+      "bank": "normal",
+      "code": "b76",
+      "count": 10
+    },
+    {
+      "bank": "normal",
+      "code": "b77",
+      "count": 10
+    },
+    {
+      "bank": "normal",
+      "code": "b78",
+      "count": 14
+    },
+    {
+      "bank": "normal",
+      "code": "b79",
+      "count": 8
+    },
+    {
+      "bank": "normal",
+      "code": "b80",
+      "count": 6
+    },
+    {
+      "bank": "normal",
+      "code": "b81",
+      "count": 8
+    },
+    {
+      "bank": "advanced",
+      "code": "b1",
+      "count": 5
+    },
+    {
+      "bank": "advanced",
+      "code": "b2",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b3",
+      "count": 5
+    },
+    {
+      "bank": "advanced",
+      "code": "b4",
+      "count": 5
+    },
+    {
+      "bank": "advanced",
+      "code": "b5",
+      "count": 5
+    },
+    {
+      "bank": "advanced",
+      "code": "b7",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b6",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b8",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b9",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b10",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b11",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b12",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b13",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b14",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b15",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b17",
+      "count": 5
+    },
+    {
+      "bank": "advanced",
+      "code": "b16",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b18",
+      "count": 5
+    },
+    {
+      "bank": "advanced",
+      "code": "b19",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b23",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b24",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b20",
+      "count": 5
+    },
+    {
+      "bank": "advanced",
+      "code": "b25",
+      "count": 5
+    },
+    {
+      "bank": "advanced",
+      "code": "b21",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b26",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b22",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b31",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b32",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b33",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b27",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b28",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b29",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b34",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b30",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b35",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b38",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b36",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b39",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b37",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b40",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b41",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b44",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b42",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b45",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b46",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b43",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b50",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b51",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b47",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b48",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b52",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b49",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b53",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b54",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b56",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b55",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b57",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b60",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b58",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b59",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b61",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b63",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b62",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b65",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b64",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b66",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b67",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b69",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b68",
+      "count": 5
+    },
+    {
+      "bank": "advanced",
+      "code": "b70",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b71",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b72",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b73",
+      "count": 5
+    },
+    {
+      "bank": "advanced",
+      "code": "b74",
+      "count": 5
+    },
+    {
+      "bank": "advanced",
+      "code": "b75",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b77",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b76",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b78",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b79",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b80",
+      "count": 6
+    },
+    {
+      "bank": "advanced",
+      "code": "b81",
+      "count": 6
+    }
+  ],
+  "issues": []
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "width": 320,
+    "passed": true,
+    "cases": [
+      "finish locks details",
+      "saved password required",
+      "wrong password stays locked",
+      "Escape and cancel",
+      "password cleared",
+      "dialog fits",
+      "open/close solutions",
+      "close relocks",
+      "review gated",
+      "navigation relocks",
+      "review completion relocks",
+      "new quiz relocks"
+    ]
+  },
+  {
+    "width": 1366,
+    "passed": true,
+    "cases": [
+      "finish locks details",
+      "saved password required",
+      "wrong password stays locked",
+      "Escape and cancel",
+      "password cleared",
+      "dialog fits",
+      "open/close solutions",
+      "close relocks",
+      "review gated",
+      "navigation relocks",
+      "review completion relocks",
+      "new quiz relocks"
+    ]
+  }
+]

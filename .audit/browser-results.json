@@ -1,0 +1,44 @@
+{
+  "init": {
+    "title": "Bé Bông Học Toán Lớp 3",
+    "tiles": 81,
+    "bodyWidth": 390,
+    "width": 390
+  },
+  "review": {
+    "enteredAllCorrect": true,
+    "recordedCorrect": false,
+    "recordedAnswer": "wrong"
+  },
+  "injection": 1,
+  "alt": {
+    "afterSubmit": true,
+    "afterNext": false
+  },
+  "flow": {
+    "stats": {
+      "total": 1,
+      "correct": 1
+    },
+    "headerAccuracy": "0%",
+    "headerLessons": "0",
+    "done": [
+      "b1"
+    ]
+  },
+  "rendering": [
+    {
+      "width": 390,
+      "all": 1136,
+      "bad": [],
+      "blank": []
+    },
+    {
+      "width": 1366,
+      "all": 1136,
+      "bad": [],
+      "blank": []
+    }
+  ],
+  "errors": []
+}

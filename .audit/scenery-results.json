@@ -1,0 +1,29 @@
+[
+  {
+    "width": 320,
+    "moving": true,
+    "pauseAndReload": true,
+    "controlsClickable": true,
+    "quietQuiz": true,
+    "reducedMotion": true,
+    "errors": []
+  },
+  {
+    "width": 390,
+    "moving": true,
+    "pauseAndReload": true,
+    "controlsClickable": true,
+    "quietQuiz": true,
+    "reducedMotion": true,
+    "errors": []
+  },
+  {
+    "width": 1366,
+    "moving": true,
+    "pauseAndReload": true,
+    "controlsClickable": true,
+    "quietQuiz": true,
+    "reducedMotion": true,
+    "errors": []
+  }
+]

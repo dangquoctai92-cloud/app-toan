@@ -1,0 +1,23 @@
+{
+  "passed": 13,
+  "checks": [
+    "81 lessons and zero initial streak",
+    "missing answers show helpful message",
+    "complete lesson records once and updates stats",
+    "progress survives reload",
+    "review accepts alternate Vietnamese reading and preserves first-attempt totals",
+    "next review button saves answers directly",
+    "typed HTML remains plain text",
+    "reset clears new-session progress after reload",
+    "corrupt progress recovers with saved raw backup",
+    "300 final exams cover five focused skills plus mixed review without duplicates",
+    "long geometry choices fit their buttons",
+    "choice selection exposes accessible state",
+    "no uncaught browser errors with external resources unavailable"
+  ],
+  "finals": {
+    "unique": 657,
+    "hasLate": true
+  },
+  "errors": []
+}
